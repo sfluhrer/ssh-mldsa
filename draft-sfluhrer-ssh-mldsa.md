@@ -21,7 +21,7 @@ venue:
   mail: "cfrg@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/ssh/"
   github: "sfluhrer/ssh-mldsa-support"
-  latest: "https://sfluhrer.github.io/ikev2-ssh-support/draft-sfluhrer-ikev2-ssh-support.html"
+  latest: "https://sfluhrer.github.io/ssh-dsa/draft-sfluhrer-ssh-mldsa.html"
 
 author:
  -
