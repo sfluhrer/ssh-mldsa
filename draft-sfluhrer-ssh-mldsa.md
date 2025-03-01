@@ -43,8 +43,12 @@ informative:
   RFC2119:
   RFC4250:
   RFC4251:
+  RFC4253:
   RFC4255:
   RFC8174:
+  IANA0SSH:
+    target: https://www.iana.org/assignments/ssh-parameters
+    title: Secure Shell (SSH) Protocol Parameters
   IANA-SSHFP:
     target: https://www.iana.org/assignments/dns-sshfp-rr-parameters)
     title: DNS SSHFP Resource Record Parameters
@@ -185,7 +189,7 @@ informative:
    The security considerations in [RFC4251], Section 9 apply to all SSH
    implementations, including those using ML-DSA.
 
-   The security considerations in ML-DSA [NIST.FIPS.204] apply to all
+   The security considerations in ML-DSA [FIPS204] apply to all
    uses of ML-DSA, including those in SSH.
 
    Cryptographic algorithms and parameters are usually broken or
