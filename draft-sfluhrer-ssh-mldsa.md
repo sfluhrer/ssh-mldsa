@@ -43,7 +43,11 @@ informative:
   RFC2119:
   RFC4250:
   RFC4251:
+  RFC4255:
   RFC8174:
+  IANA-SSHFP:
+    target: https://www.iana.org/assignments/dns-sshfp-rr-parameters)
+    title: DNS SSHFP Resource Record Parameters
 
 --- abstract---
 
@@ -131,7 +135,26 @@ informative:
 
 # SSHFP DNS Resource Records
 
-   This section needs work
+   Usage and generation of the SSHFP DNS resource record is described in
+   [RFC4255].  This section illustrates the generation of SSHFP resource
+   records for ML-DSA keys, and this document also specifies
+   the corresponding code point to "SSHFP RR Types for public key
+   algorithms" in the "DNS SSHFP Resource Record Parameters" IANA
+   registry [IANA-SSHFP].
+
+   The generation of SSHFP resource records keys for ML-DSA is
+   described as follows.
+
+   The encoding of ML-DSA public keys is described in [FIPS204].
+
+   The SSHFP Resource Record for an ML-DSA key fingerprint
+   (with a SHA-256 fingerprint) would, for example, be:
+
+   pqserver.example.com. IN SSHFP TBD 2 (
+                    a87f1b687ac0e57d2a081a2f28267237
+                    34d90ed316d2b818ca9580ea384d9240 )
+
+   Replace TBD with the value eventually allocated by IANA.
  
 # IANA Considerations
 
