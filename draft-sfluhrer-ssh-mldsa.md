@@ -2,7 +2,7 @@ title: "SSH Support of ML-DSA"
 abbrev: "SSH ML-DSA"
 category: info
 
-docname: draft-sfluhrer-ssh-ikev2-mldsa-latest
+docname: draft-sfluhrer-ssh-mldsa-latest
 submissiontype: IETF
 consensus: true
 date:
