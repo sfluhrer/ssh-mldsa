@@ -160,7 +160,7 @@ informative:
 
    This document augments the Public Key Algorithm Names in [RFC4250], Section 4.11.3.
 
-   IANA is requested to add the following entry to "Public Key Algorithm
+   IANA is requested to add the following entries to "Public Key Algorithm
    Names" in the "Secure Shell (SSH) Protocol Parameters" registry
    [IANA-SSH]:
 
@@ -170,7 +170,15 @@ informative:
    | ssh-ml-dsa-65             | 1952     | 3309           | THIS-RFC  |
    | ssh-ml-dsa-87             | 2592     | 4627           | THIS-RFC  |
 
-And possibly some parameters for DNS records
+   IANA is requested to add the following entries to "SSHFP RR Types for
+   public key algorithms" in the "DNS SSHFP Resource Record Parameters"
+   registry [IANA-SSHFP]:
+
+   | Value | Description | Reference |
+   | ----- | ----------- | --------- |
+   | TBD1  | ML-DSA-44   | THIS RFC  |
+   | TBD2  | ML-DSA-65   | THIS RFC  |
+   | TBD3  | ML-DSA-87   | THIS RFC  |
 
 # Security Considerations
 
