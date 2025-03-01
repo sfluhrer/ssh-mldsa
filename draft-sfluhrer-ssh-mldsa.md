@@ -46,7 +46,7 @@ informative:
   RFC4253:
   RFC4255:
   RFC8174:
-  IANA0SSH:
+  IANA-SSH:
     target: https://www.iana.org/assignments/ssh-parameters
     title: Secure Shell (SSH) Protocol Parameters
   IANA-SSHFP:
