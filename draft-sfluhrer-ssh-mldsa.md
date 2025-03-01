@@ -41,6 +41,7 @@ normative:
 informative:
 
   RFC2119:
+  RFC4250:
   RFC4251:
   RFC8174:
 
@@ -80,7 +81,7 @@ informative:
    The descriptions of key and signature formats use the notation
    introduced in [RFC4251], Section 3, and the string data type from
    [RFC4251], Section 5.  Identifiers and terminology from ML-DSA
-   [NIST.FIPS.204] are used throughout the document.
+   [FIPS204] are used throughout the document.
 
 # Requirement Language
 
@@ -94,7 +95,7 @@ informative:
 
    This document describes three public key algorithms for use with SSH, as
    per [RFC4253], Section 6.6, corresponding to the three parameter sets of ML-DSA.
-   The names of the algorithm are "ssh-ml-dsa-44", "ssh-ml-dsa-65" and "ssh-ml-dsa-87", to match the level 2, 3 and 5 parameter sets [NIST.FIPS.204].
+   The names of the algorithm are "ssh-ml-dsa-44", "ssh-ml-dsa-65" and "ssh-ml-dsa-87", to match the level 2, 3 and 5 parameter sets [FIPS204].
    These algorithm only support signing and not encryption.
 
 # Public Key Format
@@ -105,12 +106,12 @@ informative:
 
    string key
 
-   Here, 'key' is the public key described in [NIST.FIPS.204].
+   Here, 'key' is the public key described in [FIPS204].
 
  # Signature Algorithm
 
    Signatures are generated according to the procedure in Section 5.2
-   [NIST.FIPS.204], using the "pure" version of ML-DSA, with an empty context string.
+   [FIPS204], using the "pure" version of ML-DSA, with an empty context string.
 
 # Signature Format
 
@@ -126,7 +127,7 @@ informative:
 # Verification Algorithm
 
    Signatures are verified according to the procedure in
-   [NIST.FIPS.204], Section 5.3, using the "pure" version of ML-DSA, with an empty context strong.
+   [FIPS204], Section 5.3, using the "pure" version of ML-DSA, with an empty context strong.
 
 # SSHFP DNS Resource Records
 
