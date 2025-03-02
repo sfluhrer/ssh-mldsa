@@ -18,12 +18,13 @@ coding: UTF-8
 venue:
   group: "Secure Shell Maintenance"
   type: "Security Area"
-  mail: "cfrg@ietf.org"
+  mail: "sshg@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/ssh/"
-  github: "sfluhrer/ssh-mldsa-support"
-  latest: "https://sfluhrer.github.io/ssh-dsa/draft-sfluhrer-ssh-mldsa.html"
+  github: "sfluhrer/ssh-mldsa"
+  latest: "https://sfluhrer.github.io/ssh-mldsa/draft-sfluhrer-ssh-mldsa.html"
 
 author:
+  -
     fullname: "Scott Fluhrer"
     organization: Cisco Systems
     email: "sfluhrer@cisco.com"
