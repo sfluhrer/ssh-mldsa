@@ -4,16 +4,15 @@
 <meta charset="utf-8">
 <meta content="Common,Latin" name="scripts">
 <meta content="initial-scale=1.0" name="viewport">
-<title>TODO - Your title</title>
-<meta content="Your Name Here" name="author">
+<title>SSH Support of ML-DSA</title>
+<meta content="Scott Fluhrer" name="author">
 <meta content="
-       TODO Abstract 
+       This document describes the use of ML-DSA digital
+   signatures in the Secure Shell (SSH) protocol. 
     " name="description">
 <meta content="xml2rfc 3.27.0" name="generator">
-<meta content="next generation" name="keyword">
-<meta content="unicorn" name="keyword">
-<meta content="sparkling distributed ledger" name="keyword">
-<meta content="draft-todo-yourname-protocol-latest" name="ietf.draft">
+<meta content="ML-DSA" name="keyword">
+<meta content="draft-sfluhrer-ssh-mldsa-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.27.0
     Python 3.12.9
@@ -29,7 +28,7 @@
     setuptools 70.3.0
     wcwidth 0.2.13
 -->
-<link href="draft-todo-yourname-protocol.xml" rel="alternate" type="application/rfc+xml">
+<link href="draft-sfluhrer-ssh-mldsa.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
 <style type="text/css">@font-face {
   font-family: 'Lora';
@@ -1045,12 +1044,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <table class="ears">
 <thead><tr>
 <td class="left">Internet-Draft</td>
-<td class="center">TODO - Abbreviation</td>
+<td class="center">SSH ML-DSA</td>
 <td class="right">March 2025</td>
 </tr></thead>
 <tfoot><tr>
-<td class="left">Here</td>
-<td class="center">Expires 2 September 2025</td>
+<td class="left">Fluhrer</td>
+<td class="center">Expires 3 September 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1058,30 +1057,31 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <div id="internal-metadata" class="document-information">
 <dl id="identifiers">
 <dt class="label-workgroup">Workgroup:</dt>
-<dd class="workgroup">WG Working Group</dd>
+<dd class="workgroup">sshm</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
-<dd class="internet-draft">draft-todo-yourname-protocol-latest</dd>
+<dd class="internet-draft">draft-sfluhrer-ssh-mldsa-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-03-01" class="published">1 March 2025</time>
+<time datetime="2025-03-02" class="published">2 March 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-09-02">2 September 2025</time></dd>
+<dd class="expires"><time datetime="2025-09-03">3 September 2025</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
-      <div class="author-name">Y. N. Here</div>
-<div class="org">Your Organization Here</div>
+      <div class="author-name">S. Fluhrer</div>
+<div class="org">Cisco Systems</div>
 </div>
 </dd>
 </dl>
 </div>
-<h1 id="title">TODO - Your title</h1>
+<h1 id="title">SSH Support of ML-DSA</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">TODO Abstract<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">This document describes the use of ML-DSA digital
+   signatures in the Secure Shell (SSH) protocol.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1089,14 +1089,15 @@ svg :is([fill="white"], [fill^="#fff"]) {
       </h2>
 <p id="section-note.1-1">This note is to be removed before publishing as an RFC.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
 <p id="section-note.1-2">
-        The latest revision of this draft can be found at <span><a href="https://example.com/LATEST">https://example.com/LATEST</a></span>.
-        Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-todo-yourname-protocol/">https://datatracker.ietf.org/doc/draft-todo-yourname-protocol/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
+        The latest revision of this draft can be found at <span><a href="https://sfluhrer.github.io/ssh-mldsa/draft-sfluhrer-ssh-mldsa.html">https://sfluhrer.github.io/ssh-mldsa/draft-sfluhrer-ssh-mldsa.html</a></span>.
+        Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-sfluhrer-ssh-mldsa/">https://datatracker.ietf.org/doc/draft-sfluhrer-ssh-mldsa/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
 <p id="section-note.1-3">
         Discussion of this document takes place on the
-        WG Working Group mailing list (<span><a href="mailto:WG@example.com">mailto:WG@example.com</a></span>),
-        which is archived at <span><a href="https://example.com/WG">https://example.com/WG</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
+        Secure Shell Maintenance Security Area mailing list (<span><a href="mailto:ssh@ietf.org">mailto:ssh@ietf.org</a></span>),
+        which is archived at <span><a href="https://mailarchive.ietf.org/arch/browse/ssh/">https://mailarchive.ietf.org/arch/browse/ssh/</a></span>.
+        Subscribe at <span><a href="https://www.ietf.org/mailman/listinfo/ssh/">https://www.ietf.org/mailman/listinfo/ssh/</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
 <p id="section-note.1-4">Source for this draft and an issue tracker can be found at
-        <span><a href="https://github.com/USER/REPO">https://github.com/USER/REPO</a></span>.<a href="#section-note.1-4" class="pilcrow">¶</a></p>
+        <span><a href="https://github.com/sfluhrer/ssh-mldsa">https://github.com/sfluhrer/ssh-mldsa</a></span>.<a href="#section-note.1-4" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1117,7 +1118,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 2 September 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 3 September 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1148,24 +1149,52 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <nav class="toc"><ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
             <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.1">
+                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="auto internal xref">1.1</a>.  <a href="#name-background-on-ml-dsa" class="internal xref">Background on ML-DSA</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
             <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-conventions-and-definitions" class="internal xref">Conventions and Definitions</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-public-key-algorithms" class="internal xref">Public Key Algorithms</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
-            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-public-key-format" class="internal xref">Public Key Format</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-signature-format" class="internal xref">Signature Format</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-verification-algorithm" class="internal xref">Verification Algorithm</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-sshfp-dns-resource-records" class="internal xref">SSHFP DNS Resource Records</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1">
+                <p id="section-toc.1-1.10.2.1.1"><a href="#section-10.1" class="auto internal xref">10.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.2">
+                <p id="section-toc.1-1.10.2.2.1"><a href="#section-10.2" class="auto internal xref">10.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
 </li>
         </ul>
 </nav>
@@ -1176,7 +1205,26 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">TODO Introduction<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-1">A Cryptographically Relevant Quantum Computer (CRQC) could break
+   traditional asymmetric cryptograph algorithms: e.g RSA, ECDSA; which
+   are widely deployed authentication options of SSH.
+   NIST has recently published the postquantum digitial signature algorithm ML-DSA <span>[<a href="#FIPS204" class="cite xref">FIPS204</a>]</span>.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">This document describes how to use this algorithm for authentication within SSH <span>[<a href="#RFC4251" class="cite xref">RFC4251</a>]</span>, as a replacement for the traditional signature algorithms (RSA, ECDSA).<a href="#section-1-2" class="pilcrow">¶</a></p>
+<div id="background-on-ml-dsa">
+<section id="section-1.1">
+        <h3 id="name-background-on-ml-dsa">
+<a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-background-on-ml-dsa" class="section-name selfRef">Background on ML-DSA</a>
+        </h3>
+<p id="section-1.1-1">ML-DSA (as specified in FIPS 204) is a signature algorithm that is believed to be secure against attackers who have a Quantum Computer available to them.
+   There are three strengths defined for it (with the parameter sets being known as ML-DSA-44, ML-DSA-65 and ML-DSA-87).
+   In addition, for each defined parameter set, there are two versions, the 'pure' version (where ML-DSA directly signs the message) and a 'prehashed' version (where ML-DSA signs a hash that was computed outside of ML-DSA).
+   For this protocol, we will always use the pure version.<a href="#section-1.1-1" class="pilcrow">¶</a></p>
+<p id="section-1.1-2">In addition, ML-DSA also has a 'context' input, which is a short string that is common to the sender and the recceiver.
+   It is intended to allow for domain separation between separate uses of the same public key.<a href="#section-1.1-2" class="pilcrow">¶</a></p>
+<p id="section-1.1-3">FIPS 204 also allows ML-DSA to be run in either determanistic or 'hedged' mode (where randomness is applied to the signature operation).
+   We place no requirement on which is used; the implementation should select based on the quality of their random number source.<a href="#section-1.1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1188,39 +1236,225 @@ svg :is([fill="white"], [fill^="#fff"]) {
 "<span class="bcp14">MAY</span>", and "<span class="bcp14">OPTIONAL</span>" in this document are to be interpreted as
 described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they
 appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-2">The descriptions of key and signature formats use the notation
+   introduced in <span>[<a href="#RFC4251" class="cite xref">RFC4251</a>]</span>, Section 3, and the string data type from
+   <span>[<a href="#RFC4251" class="cite xref">RFC4251</a>]</span>, Section 5.  Identifiers and terminology from ML-DSA
+   <span>[<a href="#FIPS204" class="cite xref">FIPS204</a>]</span> are used throughout the document.<a href="#section-2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="security-considerations">
+<div id="public-key-algorithms">
 <section id="section-3">
-      <h2 id="name-security-considerations">
-<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      <h2 id="name-public-key-algorithms">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-public-key-algorithms" class="section-name selfRef">Public Key Algorithms</a>
       </h2>
-<p id="section-3-1">TODO Security<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-1">This document describes three public key algorithms for use with SSH, as
+   per <span>[<a href="#RFC4253" class="cite xref">RFC4253</a>]</span>, Section 6.6, corresponding to the three parameter sets of ML-DSA.
+   The names of the algorithm are "ssh-ml-dsa-44", "ssh-ml-dsa-65" and "ssh-ml-dsa-87", to match the level 2, 3 and 5 parameter sets <span>[<a href="#FIPS204" class="cite xref">FIPS204</a>]</span>.
+   These algorithm only support signing and not encryption.<a href="#section-3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="public-key-format">
+<section id="section-4">
+      <h2 id="name-public-key-format">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-public-key-format" class="section-name selfRef">Public Key Format</a>
+      </h2>
+<p id="section-4-1">The key format for all three parameter sets have the following encoding:<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-2">string "ssh-ml-dsa-44" (or "ssh-ml-dsa-65" or "ssh-ml-dsa-87")<a href="#section-4-2" class="pilcrow">¶</a></p>
+<p id="section-4-3">string key<a href="#section-4-3" class="pilcrow">¶</a></p>
+<p id="section-4-4">Here, 'key' is the public key described in <span>[<a href="#FIPS204" class="cite xref">FIPS204</a>]</span>.<a href="#section-4-4" class="pilcrow">¶</a></p>
+<p id="section-4-5"># Signature Algorithm<a href="#section-4-5" class="pilcrow">¶</a></p>
+<p id="section-4-6">Signatures are generated according to the procedure in Section 5.2
+   <span>[<a href="#FIPS204" class="cite xref">FIPS204</a>]</span>, using the "pure" version of ML-DSA, with an empty context string.<a href="#section-4-6" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="signature-format">
+<section id="section-5">
+      <h2 id="name-signature-format">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-signature-format" class="section-name selfRef">Signature Format</a>
+      </h2>
+<p id="section-5-1">The "ssh-ml-dsa" key format has the following encoding:<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-2">string "ssh-ml-dsa-44" (or "ssh-ml-dsa-65" or "ssh-ml-dsa-87")<a href="#section-5-2" class="pilcrow">¶</a></p>
+<p id="section-5-3">string signature<a href="#section-5-3" class="pilcrow">¶</a></p>
+<p id="section-5-4">Here, 'signature' is the signature produced in accordance with the
+   previous section.<a href="#section-5-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="verification-algorithm">
+<section id="section-6">
+      <h2 id="name-verification-algorithm">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-verification-algorithm" class="section-name selfRef">Verification Algorithm</a>
+      </h2>
+<p id="section-6-1">Signatures are verified according to the procedure in
+   <span>[<a href="#FIPS204" class="cite xref">FIPS204</a>]</span>, Section 5.3, using the "pure" version of ML-DSA, with an empty context strong.<a href="#section-6-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sshfp-dns-resource-records">
+<section id="section-7">
+      <h2 id="name-sshfp-dns-resource-records">
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-sshfp-dns-resource-records" class="section-name selfRef">SSHFP DNS Resource Records</a>
+      </h2>
+<p id="section-7-1">Usage and generation of the SSHFP DNS resource record is described in
+   <span>[<a href="#RFC4255" class="cite xref">RFC4255</a>]</span>.  This section illustrates the generation of SSHFP resource
+   records for ML-DSA keys, and this document also specifies
+   the corresponding code point to "SSHFP RR Types for public key
+   algorithms" in the "DNS SSHFP Resource Record Parameters" IANA
+   registry <span>[<a href="#IANA-SSHFP" class="cite xref">IANA-SSHFP</a>]</span>.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-2">The generation of SSHFP resource records keys for ML-DSA is
+   described as follows.<a href="#section-7-2" class="pilcrow">¶</a></p>
+<p id="section-7-3">The encoding of ML-DSA public keys is described in <span>[<a href="#FIPS204" class="cite xref">FIPS204</a>]</span>.<a href="#section-7-3" class="pilcrow">¶</a></p>
+<p id="section-7-4">The SSHFP Resource Record for an ML-DSA key fingerprint
+   (with a SHA-256 fingerprint) would, for example, be:<a href="#section-7-4" class="pilcrow">¶</a></p>
+<p id="section-7-5">pqserver.example.com. IN SSHFP TBD 2 (
+                    a87f1b687ac0e57d2a081a2f28267237
+                    34d90ed316d2b818ca9580ea384d9240 )<a href="#section-7-5" class="pilcrow">¶</a></p>
+<p id="section-7-6">Replace TBD with the value eventually allocated by IANA.<a href="#section-7-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
-<section id="section-4">
+<section id="section-8">
       <h2 id="name-iana-considerations">
-<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-4-1">This document has no IANA actions.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-8-1">This document augments the Public Key Algorithm Names in <span>[<a href="#RFC4250" class="cite xref">RFC4250</a>]</span>, Section 4.11.3.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-8-2">IANA is requested to add the following entries to "Public Key Algorithm
+   Names" in the "Secure Shell (SSH) Protocol Parameters" registry
+   <span>[<a href="#IANA-SSH" class="cite xref">IANA-SSH</a>]</span>:<a href="#section-8-2" class="pilcrow">¶</a></p>
+<table class="center" id="table-1">
+        <caption><a href="#table-1" class="selfRef">Table 1</a></caption>
+<thead>
+          <tr>
+            <th class="text-left" rowspan="1" colspan="1">Public Key Algorithm Name</th>
+            <th class="text-left" rowspan="1" colspan="1">Key Size</th>
+            <th class="text-left" rowspan="1" colspan="1">Signature Size</th>
+            <th class="text-left" rowspan="1" colspan="1">Reference</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">ssh-ml-dsa-44</td>
+            <td class="text-left" rowspan="1" colspan="1">1312</td>
+            <td class="text-left" rowspan="1" colspan="1">2420</td>
+            <td class="text-left" rowspan="1" colspan="1">THIS-RFC</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">ssh-ml-dsa-65</td>
+            <td class="text-left" rowspan="1" colspan="1">1952</td>
+            <td class="text-left" rowspan="1" colspan="1">3309</td>
+            <td class="text-left" rowspan="1" colspan="1">THIS-RFC</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">ssh-ml-dsa-87</td>
+            <td class="text-left" rowspan="1" colspan="1">2592</td>
+            <td class="text-left" rowspan="1" colspan="1">4627</td>
+            <td class="text-left" rowspan="1" colspan="1">THIS-RFC</td>
+          </tr>
+        </tbody>
+      </table>
+<p id="section-8-4">IANA is requested to add the following entries to "SSHFP RR Types for
+   public key algorithms" in the "DNS SSHFP Resource Record Parameters"
+   registry <span>[<a href="#IANA-SSHFP" class="cite xref">IANA-SSHFP</a>]</span>:<a href="#section-8-4" class="pilcrow">¶</a></p>
+<table class="center" id="table-2">
+        <caption><a href="#table-2" class="selfRef">Table 2</a></caption>
+<thead>
+          <tr>
+            <th class="text-left" rowspan="1" colspan="1">Value</th>
+            <th class="text-left" rowspan="1" colspan="1">Description</th>
+            <th class="text-left" rowspan="1" colspan="1">Reference</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">TBD1</td>
+            <td class="text-left" rowspan="1" colspan="1">ML-DSA-44</td>
+            <td class="text-left" rowspan="1" colspan="1">THIS RFC</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">TBD2</td>
+            <td class="text-left" rowspan="1" colspan="1">ML-DSA-65</td>
+            <td class="text-left" rowspan="1" colspan="1">THIS RFC</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">TBD3</td>
+            <td class="text-left" rowspan="1" colspan="1">ML-DSA-87</td>
+            <td class="text-left" rowspan="1" colspan="1">THIS RFC</td>
+          </tr>
+        </tbody>
+      </table>
 </section>
 </div>
-<div id="sec-normative-references">
-<section id="section-5">
-      <h2 id="name-normative-references">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<div id="security-considerations">
+<section id="section-9">
+      <h2 id="name-security-considerations">
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
+<p id="section-9-1">The security considerations in <span>[<a href="#RFC4251" class="cite xref">RFC4251</a>]</span>, Section 9 apply to all SSH
+   implementations, including those using ML-DSA.<a href="#section-9-1" class="pilcrow">¶</a></p>
+<p id="section-9-2">The security considerations in ML-DSA <span>[<a href="#FIPS204" class="cite xref">FIPS204</a>]</span> apply to all
+   uses of ML-DSA, including those in SSH.<a href="#section-9-2" class="pilcrow">¶</a></p>
+<p id="section-9-3">Cryptographic algorithms and parameters are usually broken or
+   weakened over time.  Implementers and users need to continously re-evaluate that cryptographic algorithms continue to provide the
+   expected level of security.<a href="#section-9-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-combined-references">
+<section id="section-10">
+      <h2 id="name-references">
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-references" class="section-name selfRef">References</a>
+      </h2>
+<div id="sec-normative-references">
+<section id="section-10.1">
+        <h3 id="name-normative-references">
+<a href="#section-10.1" class="section-number selfRef">10.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+        </h3>
 <dl class="references">
+<dt id="FIPS204">[FIPS204]</dt>
+        <dd>
+<span class="refTitle">"Module-Lattice-Based Digital Signature Standard"</span>, <span class="seriesInfo">NIST FIPS 204</span>, <time datetime="2024-08" class="refDate">August 2024</time>, <span>&lt;<a href="https://doi.org/10.6028/NIST.FIPS.204">https://doi.org/10.6028/NIST.FIPS.204</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
-    <dd>
+      <dd>
 <span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
+</section>
+</div>
+<div id="sec-informative-references">
+<section id="section-10.2">
+        <h3 id="name-informative-references">
+<a href="#section-10.2" class="section-number selfRef">10.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+        </h3>
+<dl class="references">
+<dt id="IANA-SSH">[IANA-SSH]</dt>
+        <dd>
+<span class="refTitle">"Secure Shell (SSH) Protocol Parameters"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.iana.org/assignments/ssh-parameters">https://www.iana.org/assignments/ssh-parameters</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="IANA-SSHFP">[IANA-SSHFP]</dt>
+        <dd>
+<span class="refTitle">"DNS SSHFP Resource Record Parameters"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.iana.org/assignments/dns-sshfp-rr-parameters)">https://www.iana.org/assignments/dns-sshfp-rr-parameters)</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC4250">[RFC4250]</dt>
+        <dd>
+<span class="refAuthor">Lehtinen, S.</span> and <span class="refAuthor">C. Lonvick, Ed.</span>, <span class="refTitle">"The Secure Shell (SSH) Protocol Assigned Numbers"</span>, <span class="seriesInfo">RFC 4250</span>, <span class="seriesInfo">DOI 10.17487/RFC4250</span>, <time datetime="2006-01" class="refDate">January 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4250">https://www.rfc-editor.org/rfc/rfc4250</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC4251">[RFC4251]</dt>
+        <dd>
+<span class="refAuthor">Ylonen, T.</span> and <span class="refAuthor">C. Lonvick, Ed.</span>, <span class="refTitle">"The Secure Shell (SSH) Protocol Architecture"</span>, <span class="seriesInfo">RFC 4251</span>, <span class="seriesInfo">DOI 10.17487/RFC4251</span>, <time datetime="2006-01" class="refDate">January 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4251">https://www.rfc-editor.org/rfc/rfc4251</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC4253">[RFC4253]</dt>
+        <dd>
+<span class="refAuthor">Ylonen, T.</span> and <span class="refAuthor">C. Lonvick, Ed.</span>, <span class="refTitle">"The Secure Shell (SSH) Transport Layer Protocol"</span>, <span class="seriesInfo">RFC 4253</span>, <span class="seriesInfo">DOI 10.17487/RFC4253</span>, <time datetime="2006-01" class="refDate">January 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4253">https://www.rfc-editor.org/rfc/rfc4253</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC4255">[RFC4255]</dt>
+      <dd>
+<span class="refAuthor">Schlyter, J.</span> and <span class="refAuthor">W. Griffin</span>, <span class="refTitle">"Using DNS to Securely Publish Secure Shell (SSH) Key Fingerprints"</span>, <span class="seriesInfo">RFC 4255</span>, <span class="seriesInfo">DOI 10.17487/RFC4255</span>, <time datetime="2006-01" class="refDate">January 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4255">https://www.rfc-editor.org/rfc/rfc4255</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
 </section>
 </div>
 <div id="acknowledgments">
@@ -1228,7 +1462,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-A-1">TODO acknowledge.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-1">The text of draft-josefsson-ssh-sphincs was used as a template for this document.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
@@ -1237,11 +1471,11 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <a href="#name-authors-address" class="section-name selfRef">Author's Address</a>
       </h2>
 <address class="vcard">
-        <div dir="auto" class="left"><span class="fn nameRole">Your Name Here</span></div>
-<div dir="auto" class="left"><span class="org">Your Organization Here</span></div>
+        <div dir="auto" class="left"><span class="fn nameRole">Scott Fluhrer</span></div>
+<div dir="auto" class="left"><span class="org">Cisco Systems</span></div>
 <div class="email">
 <span>Email:</span>
-<a href="mailto:your.email@example.com" class="email">your.email@example.com</a>
+<a href="mailto:sfluhrer@cisco.com" class="email">sfluhrer@cisco.com</a>
 </div>
 </address>
 </section>
