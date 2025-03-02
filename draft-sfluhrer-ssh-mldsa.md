@@ -54,7 +54,7 @@ informative:
 
    This document describes the use of ML-DSA digital
    signatures in the Secure Shell (SSH) protocol.
-  
+
 --- middle
 
 # Introduction
@@ -148,7 +148,7 @@ informative:
                     34d90ed316d2b818ca9580ea384d9240 )
 
    Replace TBD with the value eventually allocated by IANA.
- 
+
 # IANA Considerations
 
    This document augments the Public Key Algorithm Names in [RFC4250], Section 4.11.3.
@@ -184,7 +184,7 @@ informative:
    Cryptographic algorithms and parameters are usually broken or
    weakened over time.  Implementers and users need to continously re-evaluate that cryptographic algorithms continue to provide the
    expected level of security.
- 
+
 --- back
 
 # Acknowledgments
