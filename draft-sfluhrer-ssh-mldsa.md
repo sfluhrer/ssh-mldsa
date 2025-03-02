@@ -9,7 +9,7 @@ consensus: true
 date:
 v: 3
 area: "sec"
-workgroup: "SSHM"
+workgroup: "sshm"
 stand_alone: true
 ipr: trust200902
 keyword:
