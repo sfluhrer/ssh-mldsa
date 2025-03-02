@@ -24,7 +24,6 @@ venue:
   latest: "https://sfluhrer.github.io/ssh-dsa/draft-sfluhrer-ssh-mldsa.html"
 
 author:
- -
     fullname: "Scott Fluhrer"
     organization: Cisco Systems
     email: "sfluhrer@cisco.com"
@@ -40,12 +39,10 @@ normative:
 
 informative:
 
-  RFC2119:
   RFC4250:
   RFC4251:
   RFC4253:
   RFC4255:
-  RFC8174:
   IANA-SSH:
     target: https://www.iana.org/assignments/ssh-parameters
     title: Secure Shell (SSH) Protocol Parameters
