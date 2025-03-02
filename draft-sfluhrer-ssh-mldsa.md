@@ -24,8 +24,7 @@ venue:
   latest: "https://sfluhrer.github.io/ssh-mldsa/draft-sfluhrer-ssh-mldsa.html"
 
 author:
-  -
-    fullname: "Scott Fluhrer"
+  - fullname: "Scott Fluhrer"
     organization: Cisco Systems
     email: "sfluhrer@cisco.com"
 
