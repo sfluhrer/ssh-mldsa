@@ -183,8 +183,7 @@ informative:
    uses of ML-DSA, including those in SSH.
 
    Cryptographic algorithms and parameters are usually broken or
-   weakened over time.  Implementers and users need to continously re-
-   evaluate that cryptographic algorithms continue to provide the
+   weakened over time.  Implementers and users need to continously re-evaluate that cryptographic algorithms continue to provide the
    expected level of security.
  
 --- back
