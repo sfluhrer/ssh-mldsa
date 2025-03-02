@@ -18,7 +18,7 @@ coding: UTF-8
 venue:
   group: "Secure Shell Maintenance"
   type: "Security Area"
-  mail: "sshg@ietf.org"
+  mail: "ssh@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/ssh/"
   github: "sfluhrer/ssh-mldsa"
   latest: "https://sfluhrer.github.io/ssh-mldsa/draft-sfluhrer-ssh-mldsa.html"
@@ -88,14 +88,6 @@ informative:
    introduced in [RFC4251], Section 3, and the string data type from
    [RFC4251], Section 5.  Identifiers and terminology from ML-DSA
    [FIPS204] are used throughout the document.
-
-# Requirement Language
-
-   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
-   "OPTIONAL" in this document are to be interpreted as described in
-   BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
-   capitals, as shown here.
 
 # Public Key Algorithms
 
