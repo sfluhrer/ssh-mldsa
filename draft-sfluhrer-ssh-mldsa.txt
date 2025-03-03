@@ -4,8 +4,8 @@
 
 sshm                                                          S. Fluhrer
 Internet-Draft                                             Cisco Systems
-Intended status: Informational                              2 March 2025
-Expires: 3 September 2025
+Intended status: Informational                              3 March 2025
+Expires: 4 September 2025
 
 
                          SSH Support of ML-DSA
@@ -48,7 +48,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 September 2025.
+   This Internet-Draft will expire on 4 September 2025.
 
 Copyright Notice
 
@@ -144,7 +144,7 @@ Table of Contents
    The key format for all three parameter sets have the following
    encoding:
 
-   string "ssh-ml-dsa-44" (or "ssh-ml-dsa-65" or "ssh-ml-dsa-87")
+   string "ssh-mldsa44" (or "ssh-mldsa65" or "ssh-mldsa87")
 
    string key
 
@@ -158,9 +158,9 @@ Table of Contents
 
 5.  Signature Format
 
-   The "ssh-ml-dsa" key format has the following encoding:
+   The "ssh-mldsa" key format has the following encoding:
 
-   string "ssh-ml-dsa-44" (or "ssh-ml-dsa-65" or "ssh-ml-dsa-87")
+   string "ssh-mldsa44" (or "ssh-mldsa65" or "ssh-mldsa87")
 
    string signature
 
@@ -208,11 +208,11 @@ Table of Contents
    | Public Key Algorithm Name | Key Size | Signature      | Reference |
    |                           |          | Size           |           |
    +===========================+==========+================+===========+
-   | ssh-ml-dsa-44             | 1312     | 2420           | THIS-RFC  |
+   | ssh-mldsa44               | 1312     | 2420           | THIS-RFC  |
    +---------------------------+----------+----------------+-----------+
-   | ssh-ml-dsa-65             | 1952     | 3309           | THIS-RFC  |
+   | ssh-mldsa65               | 1952     | 3309           | THIS-RFC  |
    +---------------------------+----------+----------------+-----------+
-   | ssh-ml-dsa-87             | 2592     | 4627           | THIS-RFC  |
+   | ssh-mldsa87               | 2592     | 4627           | THIS-RFC  |
    +---------------------------+----------+----------------+-----------+
 
                                   Table 1
