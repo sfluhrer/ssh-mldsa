@@ -99,7 +99,7 @@ informative:
 
    The key format for all three parameter sets have the following encoding:
 
-   string "ssh-ml-dsa-44" (or "ssh-ml-dsa-65" or "ssh-ml-dsa-87")
+   string "ssh-mldsa44" (or "ssh-mldsa65" or "ssh-mldsa87")
 
    string key
 
@@ -112,9 +112,9 @@ informative:
 
 # Signature Format
 
-   The "ssh-ml-dsa" key format has the following encoding:
+   The "ssh-mldsa" key format has the following encoding:
 
-   string "ssh-ml-dsa-44" (or "ssh-ml-dsa-65" or "ssh-ml-dsa-87")
+   string "ssh-mldsa44" (or "ssh-mldsa65" or "ssh-mldsa87")
 
    string signature
 
@@ -159,9 +159,9 @@ informative:
 
    | Public Key Algorithm Name | Key Size | Signature Size | Reference |
    | ------------------------- | -------- | -------------- | --------- |
-   | ssh-ml-dsa-44             | 1312     | 2420           | THIS-RFC  |
-   | ssh-ml-dsa-65             | 1952     | 3309           | THIS-RFC  |
-   | ssh-ml-dsa-87             | 2592     | 4627           | THIS-RFC  |
+   | ssh-mldsa44               | 1312     | 2420           | THIS-RFC  |
+   | ssh-mldsa65               | 1952     | 3309           | THIS-RFC  |
+   | ssh-mldsa87               | 2592     | 4627           | THIS-RFC  |
 
    IANA is requested to add the following entries to "SSHFP RR Types for
    public key algorithms" in the "DNS SSHFP Resource Record Parameters"
