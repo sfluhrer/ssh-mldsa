@@ -92,7 +92,7 @@ informative:
 
    This document describes three public key algorithms for use with SSH, as
    per [RFC4253], Section 6.6, corresponding to the three parameter sets of ML-DSA.
-   The names of the algorithm are "ssh-ml-dsa-44", "ssh-ml-dsa-65" and "ssh-ml-dsa-87", to match the level 2, 3 and 5 parameter sets [FIPS204].
+   The names of the algorithm are "ssh-mldsa44", "ssh-mldsa65" and "ssh-mldsa87", to match the level 2, 3 and 5 parameter sets [FIPS204].
    These algorithm only support signing and not encryption.
 
 # Public Key Format
