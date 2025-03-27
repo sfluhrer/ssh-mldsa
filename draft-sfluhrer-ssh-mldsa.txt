@@ -4,8 +4,8 @@
 
 sshm                                                          S. Fluhrer
 Internet-Draft                                             Cisco Systems
-Intended status: Informational                              3 March 2025
-Expires: 4 September 2025
+Intended status: Informational                             27 March 2025
+Expires: 28 September 2025
 
 
                          SSH Support of ML-DSA
@@ -48,7 +48,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 September 2025.
+   This Internet-Draft will expire on 28 September 2025.
 
 Copyright Notice
 
@@ -134,10 +134,10 @@ Table of Contents
 
    This document describes three public key algorithms for use with SSH,
    as per [RFC4253], Section 6.6, corresponding to the three parameter
-   sets of ML-DSA.  The names of the algorithm are "ssh-ml-dsa-44",
-   "ssh-ml-dsa-65" and "ssh-ml-dsa-87", to match the level 2, 3 and 5
-   parameter sets [FIPS204].  These algorithm only support signing and
-   not encryption.
+   sets of ML-DSA.  The names of the algorithm are "ssh-mldsa44", "ssh-
+   mldsa65" and "ssh-mldsa87", to match the level 2, 3 and 5 parameter
+   sets [FIPS204].  These algorithm only support signing and not
+   encryption.
 
 4.  Public Key Format
 
