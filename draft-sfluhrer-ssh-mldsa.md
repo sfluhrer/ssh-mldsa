@@ -75,6 +75,7 @@ informative:
 
    In addition, ML-DSA also has a 'context' input, which is a short string that is common to the sender and the recceiver.
    It is intended to allow for domain separation between separate uses of the same public key.
+   This protocol always uses an empty (zero length) context.
 
    FIPS 204 also allows ML-DSA to be run in either determanistic or 'hedged' mode (where randomness is applied to the signature operation).
    We place no requirement on which is used; the implementation should select based on the quality of their random number source.
