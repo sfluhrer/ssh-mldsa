@@ -4,8 +4,8 @@
 
 sshm                                                          S. Fluhrer
 Internet-Draft                                             Cisco Systems
-Intended status: Informational                             27 March 2025
-Expires: 28 September 2025
+Intended status: Informational                              12 June 2025
+Expires: 14 December 2025
 
 
                          SSH Support of ML-DSA
@@ -48,7 +48,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 September 2025.
+   This Internet-Draft will expire on 14 December 2025.
 
 Copyright Notice
 
@@ -109,7 +109,8 @@ Table of Contents
    In addition, ML-DSA also has a 'context' input, which is a short
    string that is common to the sender and the recceiver.  It is
    intended to allow for domain separation between separate uses of the
-   same public key.
+   same public key.  This protocol always uses an empty (zero length)
+   context.
 
    FIPS 204 also allows ML-DSA to be run in either determanistic or
    'hedged' mode (where randomness is applied to the signature
