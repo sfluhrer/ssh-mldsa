@@ -96,6 +96,15 @@ informative:
    The names of the algorithm are "ssh-mldsa44", "ssh-mldsa65" and "ssh-mldsa87", to match the level 2, 3 and 5 parameter sets [FIPS204].
    These algorithm only support signing and not encryption.
 
+   The below table lists the public key sizes and the signature size (in bytes) for the three parameter sets.
+
+      | Public Key Algorithm Name | Public Key Size | Signature Size |
+      | ------------------------- | --------------- | -------------- |
+      | ssh-mldsa44               | 1312            | 2420           |
+      | ssh-mldsa65               | 1952            | 3309           |
+      | ssh-mldsa87               | 2592            | 4627           |
+
+
 # Public Key Format
 
    The key format for all three parameter sets have the following encoding:
@@ -158,11 +167,11 @@ informative:
    Names" in the "Secure Shell (SSH) Protocol Parameters" registry
    [IANA-SSH]:
 
-   | Public Key Algorithm Name | Key Size | Signature Size | Reference |
-   | ------------------------- | -------- | -------------- | --------- |
-   | ssh-mldsa44               | 1312     | 2420           | THIS-RFC  |
-   | ssh-mldsa65               | 1952     | 3309           | THIS-RFC  |
-   | ssh-mldsa87               | 2592     | 4627           | THIS-RFC  |
+   | Public Key Algorithm Name | Reference |
+   | ------------------------- | --------- |
+   | ssh-mldsa44               | THIS-RFC  |
+   | ssh-mldsa65               | THIS-RFC  |
+   | ssh-mldsa87               | THIS-RFC  |
 
    IANA is requested to add the following entries to "SSHFP RR Types for
    public key algorithms" in the "DNS SSHFP Resource Record Parameters"
