@@ -4,8 +4,8 @@
 
 sshm                                                          S. Fluhrer
 Internet-Draft                                             Cisco Systems
-Intended status: Informational                              12 June 2025
-Expires: 14 December 2025
+Intended status: Informational                              20 July 2025
+Expires: 21 January 2026
 
 
                          SSH Support of ML-DSA
@@ -48,7 +48,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 December 2025.
+   This Internet-Draft will expire on 21 January 2026.
 
 Copyright Notice
 
@@ -140,6 +140,15 @@ Table of Contents
    sets [FIPS204].  These algorithm only support signing and not
    encryption.
 
+   The below table lists the public key sizes and the signature size (in
+   bytes) for the three parameter sets.
+
+     | Public Key Algorithm Name | Public Key Size | Signature Size |
+     | ------------------------- | --------------- | -------------- |
+     | ssh-mldsa44               | 1312            | 2420           |
+     | ssh-mldsa65               | 1952            | 3309           |
+     | ssh-mldsa87               | 2592            | 4627           |
+
 4.  Public Key Format
 
    The key format for all three parameter sets have the following
@@ -205,16 +214,15 @@ Table of Contents
    Algorithm Names" in the "Secure Shell (SSH) Protocol Parameters"
    registry [IANA-SSH]:
 
-   +===========================+==========+================+===========+
-   | Public Key Algorithm Name | Key Size | Signature      | Reference |
-   |                           |          | Size           |           |
-   +===========================+==========+================+===========+
-   | ssh-mldsa44               | 1312     | 2420           | THIS-RFC  |
-   +---------------------------+----------+----------------+-----------+
-   | ssh-mldsa65               | 1952     | 3309           | THIS-RFC  |
-   +---------------------------+----------+----------------+-----------+
-   | ssh-mldsa87               | 2592     | 4627           | THIS-RFC  |
-   +---------------------------+----------+----------------+-----------+
+                 +===========================+===========+
+                 | Public Key Algorithm Name | Reference |
+                 +===========================+===========+
+                 | ssh-mldsa44               | THIS-RFC  |
+                 +---------------------------+-----------+
+                 | ssh-mldsa65               | THIS-RFC  |
+                 +---------------------------+-----------+
+                 | ssh-mldsa87               | THIS-RFC  |
+                 +---------------------------+-----------+
 
                                   Table 1
 

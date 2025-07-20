@@ -10,12 +10,12 @@
        This document describes the use of ML-DSA digital
    signatures in the Secure Shell (SSH) protocol. 
     " name="description">
-<meta content="xml2rfc 3.28.1" name="generator">
+<meta content="xml2rfc 3.30.0" name="generator">
 <meta content="ML-DSA" name="keyword">
 <meta content="draft-sfluhrer-ssh-mldsa-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.28.1
-    Python 3.12.10
+  xml2rfc 3.30.0
+    Python 3.12.11
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
@@ -24,7 +24,7 @@
     platformdirs 4.3.8
     pycountry 24.6.1
     PyYAML 6.0.2
-    requests 2.32.3
+    requests 2.32.4
     setuptools 80.9.0
     wcwidth 0.2.13
 -->
@@ -1045,11 +1045,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">SSH ML-DSA</td>
-<td class="right">June 2025</td>
+<td class="right">July 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Fluhrer</td>
-<td class="center">Expires 14 December 2025</td>
+<td class="center">Expires 21 January 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1062,12 +1062,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-sfluhrer-ssh-mldsa-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-06-12" class="published">12 June 2025</time>
+<time datetime="2025-07-20" class="published">20 July 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-12-14">14 December 2025</time></dd>
+<dd class="expires"><time datetime="2026-01-21">21 January 2026</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1118,7 +1118,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 14 December 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 21 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1252,6 +1252,16 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
    per <span>[<a href="#RFC4253" class="cite xref">RFC4253</a>]</span>, Section 6.6, corresponding to the three parameter sets of ML-DSA.
    The names of the algorithm are "ssh-mldsa44", "ssh-mldsa65" and "ssh-mldsa87", to match the level 2, 3 and 5 parameter sets <span>[<a href="#FIPS204" class="cite xref">FIPS204</a>]</span>.
    These algorithm only support signing and not encryption.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-2">The below table lists the public key sizes and the signature size (in bytes) for the three parameter sets.<a href="#section-3-2" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-3-3">
+<pre>
+  | Public Key Algorithm Name | Public Key Size | Signature Size |
+  | ------------------------- | --------------- | -------------- |
+  | ssh-mldsa44               | 1312            | 2420           |
+  | ssh-mldsa65               | 1952            | 3309           |
+  | ssh-mldsa87               | 2592            | 4627           |
+</pre><a href="#section-3-3" class="pilcrow">¶</a>
+</div>
 </section>
 </div>
 <div id="public-key-format">
@@ -1325,28 +1335,20 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <thead>
           <tr>
             <th class="text-left" rowspan="1" colspan="1">Public Key Algorithm Name</th>
-            <th class="text-left" rowspan="1" colspan="1">Key Size</th>
-            <th class="text-left" rowspan="1" colspan="1">Signature Size</th>
             <th class="text-left" rowspan="1" colspan="1">Reference</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">ssh-mldsa44</td>
-            <td class="text-left" rowspan="1" colspan="1">1312</td>
-            <td class="text-left" rowspan="1" colspan="1">2420</td>
             <td class="text-left" rowspan="1" colspan="1">THIS-RFC</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">ssh-mldsa65</td>
-            <td class="text-left" rowspan="1" colspan="1">1952</td>
-            <td class="text-left" rowspan="1" colspan="1">3309</td>
             <td class="text-left" rowspan="1" colspan="1">THIS-RFC</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">ssh-mldsa87</td>
-            <td class="text-left" rowspan="1" colspan="1">2592</td>
-            <td class="text-left" rowspan="1" colspan="1">4627</td>
             <td class="text-left" rowspan="1" colspan="1">THIS-RFC</td>
           </tr>
         </tbody>
