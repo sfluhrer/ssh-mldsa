@@ -1253,15 +1253,33 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
    The names of the algorithm are "ssh-mldsa44", "ssh-mldsa65" and "ssh-mldsa87", to match the level 2, 3 and 5 parameter sets <span>[<a href="#FIPS204" class="cite xref">FIPS204</a>]</span>.
    These algorithm only support signing and not encryption.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <p id="section-3-2">The below table lists the public key sizes and the signature size (in bytes) for the three parameter sets.<a href="#section-3-2" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-3-3">
-<pre>
-  | Public Key Algorithm Name | Public Key Size | Signature Size |
-  | ------------------------- | --------------- | -------------- |
-  | ssh-mldsa44               | 1312            | 2420           |
-  | ssh-mldsa65               | 1952            | 3309           |
-  | ssh-mldsa87               | 2592            | 4627           |
-</pre><a href="#section-3-3" class="pilcrow">¶</a>
-</div>
+<table class="center" id="table-1">
+        <caption><a href="#table-1" class="selfRef">Table 1</a></caption>
+<thead>
+          <tr>
+            <th class="text-left" rowspan="1" colspan="1">Public Key Algorithm Name</th>
+            <th class="text-left" rowspan="1" colspan="1">Public Key Size</th>
+            <th class="text-left" rowspan="1" colspan="1">Signature Size</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">ssh-mldsa44</td>
+            <td class="text-left" rowspan="1" colspan="1">1312</td>
+            <td class="text-left" rowspan="1" colspan="1">2420</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">ssh-mldsa65</td>
+            <td class="text-left" rowspan="1" colspan="1">1952</td>
+            <td class="text-left" rowspan="1" colspan="1">3309</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">ssh-mldsa87</td>
+            <td class="text-left" rowspan="1" colspan="1">2592</td>
+            <td class="text-left" rowspan="1" colspan="1">4627</td>
+          </tr>
+        </tbody>
+      </table>
 </section>
 </div>
 <div id="public-key-format">
@@ -1330,8 +1348,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="section-8-2">IANA is requested to add the following entries to "Public Key Algorithm
    Names" in the "Secure Shell (SSH) Protocol Parameters" registry
    <span>[<a href="#IANA-SSH" class="cite xref">IANA-SSH</a>]</span>:<a href="#section-8-2" class="pilcrow">¶</a></p>
-<table class="center" id="table-1">
-        <caption><a href="#table-1" class="selfRef">Table 1</a></caption>
+<table class="center" id="table-2">
+        <caption><a href="#table-2" class="selfRef">Table 2</a></caption>
 <thead>
           <tr>
             <th class="text-left" rowspan="1" colspan="1">Public Key Algorithm Name</th>
@@ -1356,8 +1374,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="section-8-4">IANA is requested to add the following entries to "SSHFP RR Types for
    public key algorithms" in the "DNS SSHFP Resource Record Parameters"
    registry <span>[<a href="#IANA-SSHFP" class="cite xref">IANA-SSHFP</a>]</span>:<a href="#section-8-4" class="pilcrow">¶</a></p>
-<table class="center" id="table-2">
-        <caption><a href="#table-2" class="selfRef">Table 2</a></caption>
+<table class="center" id="table-3">
+        <caption><a href="#table-3" class="selfRef">Table 3</a></caption>
 <thead>
           <tr>
             <th class="text-left" rowspan="1" colspan="1">Value</th>

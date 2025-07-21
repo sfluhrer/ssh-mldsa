@@ -143,11 +143,17 @@ Table of Contents
    The below table lists the public key sizes and the signature size (in
    bytes) for the three parameter sets.
 
+     +===========================+=================+================+
      | Public Key Algorithm Name | Public Key Size | Signature Size |
-     | ------------------------- | --------------- | -------------- |
+     +===========================+=================+================+
      | ssh-mldsa44               | 1312            | 2420           |
+     +---------------------------+-----------------+----------------+
      | ssh-mldsa65               | 1952            | 3309           |
+     +---------------------------+-----------------+----------------+
      | ssh-mldsa87               | 2592            | 4627           |
+     +---------------------------+-----------------+----------------+
+
+                                 Table 1
 
 4.  Public Key Format
 
@@ -224,7 +230,7 @@ Table of Contents
                  | ssh-mldsa87               | THIS-RFC  |
                  +---------------------------+-----------+
 
-                                  Table 1
+                                  Table 2
 
    IANA is requested to add the following entries to "SSHFP RR Types for
    public key algorithms" in the "DNS SSHFP Resource Record Parameters"
@@ -240,7 +246,7 @@ Table of Contents
                     | TBD3  | ML-DSA-87   | THIS RFC  |
                     +-------+-------------+-----------+
 
-                                  Table 2
+                                  Table 3
 
 9.  Security Considerations
 
