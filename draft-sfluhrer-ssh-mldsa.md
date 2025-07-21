@@ -98,11 +98,11 @@ informative:
 
    The below table lists the public key sizes and the signature size (in bytes) for the three parameter sets.
 
-      | Public Key Algorithm Name | Public Key Size | Signature Size |
-      | ------------------------- | --------------- | -------------- |
-      | ssh-mldsa44               | 1312            | 2420           |
-      | ssh-mldsa65               | 1952            | 3309           |
-      | ssh-mldsa87               | 2592            | 4627           |
+   | Public Key Algorithm Name | Public Key Size | Signature Size |
+   | ------------------------- | --------------- | -------------- |
+   | ssh-mldsa44               | 1312            | 2420           |
+   | ssh-mldsa65               | 1952            | 3309           |
+   | ssh-mldsa87               | 2592            | 4627           |
 
 # Public Key Format
 
