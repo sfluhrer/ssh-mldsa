@@ -104,7 +104,6 @@ informative:
       | ssh-mldsa65               | 1952            | 3309           |
       | ssh-mldsa87               | 2592            | 4627           |
 
-
 # Public Key Format
 
    The key format for all three parameter sets have the following encoding:
