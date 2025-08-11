@@ -213,6 +213,25 @@ Table of Contents
 
 8.  IANA Considerations
 
+   This document augments the Public Key Algorithm Names in [RFC4250],
+   Section 4.11.3.
+
+   IANA is requested to add the following entries to "Public Key
+   Algorithm Names" in the "Secure Shell (SSH) Protocol Parameters"
+   registry [IANA-SSH]:
+
+                 +===========================+===========+
+                 | Public Key Algorithm Name | Reference |
+                 +===========================+===========+
+                 | ssh-mldsa-44              | THIS-RFC  |
+                 +---------------------------+-----------+
+                 | ssh-mldsa-65              | THIS-RFC  |
+                 +---------------------------+-----------+
+                 | ssh-mldsa-87              | THIS-RFC  |
+                 +---------------------------+-----------+
+
+                                  Table 2
+
    IANA is requested to add the following entries to "SSHFP RR Types for
    public key algorithms" in the "DNS SSHFP Resource Record Parameters"
    registry [IANA-SSHFP]:
@@ -227,7 +246,7 @@ Table of Contents
                     | TBD3  | ML-DSA-87   | THIS RFC  |
                     +-------+-------------+-----------+
 
-                                  Table 2
+                                  Table 3
 
 9.  Security Considerations
 
