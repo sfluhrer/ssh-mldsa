@@ -87,7 +87,7 @@ Table of Contents
    A Cryptographically Relevant Quantum Computer (CRQC) could break
    traditional asymmetric cryptograph algorithms: e.g RSA, ECDSA; which
    are widely deployed authentication options of SSH.  NIST has recently
-   published the postquantum digitial signature algorithm ML-DSA
+   published the postquantum digital signature algorithm ML-DSA
    [FIPS204].
 
    This document describes how to use this algorithm for authentication
