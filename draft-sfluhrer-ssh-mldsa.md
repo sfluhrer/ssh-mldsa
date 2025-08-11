@@ -93,22 +93,22 @@ informative:
 
    This document describes three public key algorithms for use with SSH, as
    per [RFC4253], Section 6.6, corresponding to the three parameter sets of ML-DSA.
-   The names of the algorithm are "ssh-mldsa44", "ssh-mldsa65" and "ssh-mldsa87", to match the level 2, 3 and 5 parameter sets [FIPS204].
+   The names of the algorithm are "ssh-mldsa-44", "ssh-mldsa-65" and "ssh-mldsa-87", to match the level 2, 3 and 5 parameter sets [FIPS204].
    These algorithm only support signing and not encryption.
 
    The below table lists the public key sizes and the signature size (in bytes) for the three parameter sets.
 
    | Public Key Algorithm Name | Public Key Size | Signature Size |
    | ------------------------- | --------------- | -------------- |
-   | ssh-mldsa44               | 1312            | 2420           |
-   | ssh-mldsa65               | 1952            | 3309           |
-   | ssh-mldsa87               | 2592            | 4627           |
+   | ssh-mldsa-44              | 1312            | 2420           |
+   | ssh-mldsa-65              | 1952            | 3309           |
+   | ssh-mldsa-87              | 2592            | 4627           |
 
 # Public Key Format
 
    The key format for all three parameter sets have the following encoding:
 
-   string "ssh-mldsa44" (or "ssh-mldsa65" or "ssh-mldsa87")
+   string "ssh-mldsa-44" (or "ssh-mldsa-65" or "ssh-mldsa-87")
 
    string key
 
@@ -123,7 +123,7 @@ informative:
 
    The "ssh-mldsa" key format has the following encoding:
 
-   string "ssh-mldsa44" (or "ssh-mldsa65" or "ssh-mldsa87")
+   string "ssh-mldsa-44" (or "ssh-mldsa-65" or "ssh-mldsa-87")
 
    string signature
 
@@ -159,18 +159,6 @@ informative:
    Replace TBD with the value eventually allocated by IANA.
 
 # IANA Considerations
-
-   This document augments the Public Key Algorithm Names in [RFC4250], Section 4.11.3.
-
-   IANA is requested to add the following entries to "Public Key Algorithm
-   Names" in the "Secure Shell (SSH) Protocol Parameters" registry
-   [IANA-SSH]:
-
-   | Public Key Algorithm Name | Reference |
-   | ------------------------- | --------- |
-   | ssh-mldsa44               | THIS-RFC  |
-   | ssh-mldsa65               | THIS-RFC  |
-   | ssh-mldsa87               | THIS-RFC  |
 
    IANA is requested to add the following entries to "SSHFP RR Types for
    public key algorithms" in the "DNS SSHFP Resource Record Parameters"
