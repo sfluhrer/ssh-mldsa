@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-09-04T01:41:21.780572+00:00",
+  "timestamp": "2025-09-07T01:49:00.456878+00:00",
   "repo": "sfluhrer/ssh-mldsa",
   "labels": [
     {
@@ -49,6 +49,38 @@
       "color": "ffffff"
     }
   ],
-  "issues": [],
+  "issues": [
+    {
+      "number": 1,
+      "id": "I_kwDOOBnWLM7JxbOb",
+      "title": "Hedged or deterministic",
+      "url": "https://github.com/sfluhrer/ssh-mldsa/issues/1",
+      "state": "OPEN",
+      "author": "emanjon",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": ">    FIPS 204 also allows ML-DSA to be run in either determanistic or\n>    'hedged' mode (where randomness is applied to the signature\n>    operation).  We place no requirement on which is used; the\n>    implementation should select based on the quality of their random\n>    number source.\n\nI don't think the quality of the random number source matters.\n\nHedged always has strictly better security. As stated in FIPS 204, the deterministic variant should not be used on platforms where side-channel attacks are a concern and where they cannot be otherwise mitigated\n\nThe only benefits with deterministic is that it might be easier to verify the implementation.\n",
+      "createdAt": "2025-09-04T19:35:22Z",
+      "updatedAt": "2025-09-05T16:41:11Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "sfluhrer",
+          "authorAssociation": "OWNER",
+          "body": "I am not so certain about that.  My understanding of DPA-style attacks is that repeating the exact same operation (which is what happens in deterministic mode if you repeatedly sign the same message) doesn't actually give the attacker much additional information (because the noise generated at the same time as the signal is consistent, and hence cannot be statistically eliminated).  Instead, what the attacker needs to perform the same operation on different inputs (other than the one he is interested in); in that case, the 'noise' is not consistent between samples and so it can be eliminated.\nOf course, deterministic signing isn't actually a protection (because the attacker can just listen into the signing of different messages, which is what normally happens with SSH anyways); however by the above logic, it isn't a weakness either.",
+          "createdAt": "2025-09-04T20:54:54Z",
+          "updatedAt": "2025-09-04T20:54:54Z"
+        },
+        {
+          "author": "tomato42",
+          "authorAssociation": "NONE",
+          "body": ">  (because the noise generated at the same time as the signal is consistent, and hence cannot be statistically eliminated)\n\nthat's not true, not all noise is correlated with the signal; some of it is (like the noise introduced by branch prediction), but stuff like electrical noise from the power grid, or the WiFi signals in the air, is almost guaranteed to be uncorrelated, so performing multiple measurements then will allow to average such noise out",
+          "createdAt": "2025-09-05T16:41:11Z",
+          "updatedAt": "2025-09-05T16:41:11Z"
+        }
+      ]
+    }
+  ],
   "pulls": []
 }
