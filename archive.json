@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-09-11T01:44:23.169102+00:00",
+  "timestamp": "2025-09-14T01:48:35.090614+00:00",
   "repo": "sfluhrer/ssh-mldsa",
   "labels": [
     {
@@ -55,15 +55,15 @@
       "id": "I_kwDOOBnWLM7JxbOb",
       "title": "Hedged or deterministic",
       "url": "https://github.com/sfluhrer/ssh-mldsa/issues/1",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "emanjon",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": ">    FIPS 204 also allows ML-DSA to be run in either determanistic or\n>    'hedged' mode (where randomness is applied to the signature\n>    operation).  We place no requirement on which is used; the\n>    implementation should select based on the quality of their random\n>    number source.\n\nI don't think the quality of the random number source matters.\n\nHedged always has strictly better security. As stated in FIPS 204, the deterministic variant should not be used on platforms where side-channel attacks are a concern and where they cannot be otherwise mitigated\n\nThe only benefits with deterministic is that it might be easier to verify the implementation.\n",
       "createdAt": "2025-09-04T19:35:22Z",
-      "updatedAt": "2025-09-08T13:46:28Z",
-      "closedAt": null,
+      "updatedAt": "2025-09-13T20:15:30Z",
+      "closedAt": "2025-09-13T20:14:57Z",
       "comments": [
         {
           "author": "sfluhrer",
@@ -85,6 +85,13 @@
           "body": "Looking through ML-DSA (and assuming a straight-forward implementation with no side channel protections), there are two obvious approaches to do a DPA-style side channel attack during signature generation (with the steps listed from algorithm 17 for FIPS 204):\n\n1. Listen into the hash operation in step 7 to attempt to recover K, and if you can recover that on a deterministic implementation, he can predict \\rho'' values.  I'm not sure how the attacker can leverage that to recover the secret key or generate forgeries, but it is plausible that he can\n2. Listen into the multiplication operations in steps 18, 19, 25, which involve the multiplication of known values times a secret value, to recover the values \\\\^{s}_1, \\\\^{s}_2, \\\\^{t}_0 (which effectively is the private key).\n\nThere are other leakages within the NTT and later operations, but (2) looks to be easier to use for the attacker.\n\nHedge mode protects against (1); even if the adversary learns K, there's nothing he can do with it (assuming he cannot guess future rng values).  However, it does absolutely nothing to protect against (2) (or other attacks against the later operations).  And, it would appear that (2) would be easier for the adversary to perform, as a multiplication of a 23 bit value times a series of known quantities would leak more than the 64 bit operations within SHAKE.\n\nThat said, it would appear that my text of \"don't use hedged mode if you don't trust your rng\" is misguided - even a bad rng doesn't make anything worse than deterministic (and while the attack it addresses is suboptimal from the attacker's viewpoint, it does exist).  So, would recommending hedged mode (while not prohibiting deterministic mode) be acceptable?",
           "createdAt": "2025-09-07T20:43:35Z",
           "updatedAt": "2025-09-08T13:46:28Z"
+        },
+        {
+          "author": "sfluhrer",
+          "authorAssociation": "OWNER",
+          "body": "Text updated to recommend hedged mode",
+          "createdAt": "2025-09-13T20:15:30Z",
+          "updatedAt": "2025-09-13T20:15:30Z"
         }
       ]
     }
