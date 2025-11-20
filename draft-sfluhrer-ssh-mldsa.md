@@ -134,7 +134,7 @@ informative:
 # Verification Algorithm
 
    Signatures are verified according to the procedure in
-   [FIPS204], Section 5.3, using the "pure" version of ML-DSA, with an empty context strong.
+   [FIPS204], Section 5.3, using the "pure" version of ML-DSA, with an empty context string.
 
 # SSHFP DNS Resource Records
 
