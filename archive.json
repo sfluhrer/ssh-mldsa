@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-11-18T01:51:59.781360+00:00",
+  "timestamp": "2025-11-20T01:50:08.769261+00:00",
   "repo": "sfluhrer/ssh-mldsa",
   "labels": [
     {
@@ -94,7 +94,50 @@
           "updatedAt": "2025-09-13T20:15:30Z"
         }
       ]
+    },
+    {
+      "number": 2,
+      "id": "I_kwDOOBnWLM7ZE-Xe",
+      "title": "Typo in section \"Verification Algorithm\"",
+      "url": "https://github.com/sfluhrer/ssh-mldsa/issues/2",
+      "state": "OPEN",
+      "author": "holger-dengler",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "There is a typo in section \"Verification Algorithm\":\n> ..., using the \"pure\" version of ML-DSA, with an empty context strong.\n\nstrong --> string",
+      "createdAt": "2025-11-19T09:57:27Z",
+      "updatedAt": "2025-11-19T09:57:27Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
-  "pulls": []
+  "pulls": [
+    {
+      "number": 3,
+      "id": "PR_kwDOOBnWLM60Z65w",
+      "title": "Fix typo in Verification Algorithm section",
+      "url": "https://github.com/sfluhrer/ssh-mldsa/pull/3",
+      "state": "OPEN",
+      "author": "holger-dengler",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes: #2",
+      "createdAt": "2025-11-19T17:12:00Z",
+      "updatedAt": "2025-11-19T17:12:00Z",
+      "baseRepository": "sfluhrer/ssh-mldsa",
+      "baseRefName": "main",
+      "baseRefOid": "54b5b7451aba3777f2e64c9f7d17265ee4625352",
+      "headRepository": "holger-dengler/ssh-mldsa",
+      "headRefName": "tip",
+      "headRefOid": "0cb6955bf8386b119e23224bae86546d0a0b4995",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    }
+  ]
 }
