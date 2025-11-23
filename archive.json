@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-11-20T01:50:08.769261+00:00",
+  "timestamp": "2025-11-23T02:05:24.597043+00:00",
   "repo": "sfluhrer/ssh-mldsa",
   "labels": [
     {
@@ -100,15 +100,15 @@
       "id": "I_kwDOOBnWLM7ZE-Xe",
       "title": "Typo in section \"Verification Algorithm\"",
       "url": "https://github.com/sfluhrer/ssh-mldsa/issues/2",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "holger-dengler",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "There is a typo in section \"Verification Algorithm\":\n> ..., using the \"pure\" version of ML-DSA, with an empty context strong.\n\nstrong --> string",
       "createdAt": "2025-11-19T09:57:27Z",
-      "updatedAt": "2025-11-19T09:57:27Z",
-      "closedAt": null,
+      "updatedAt": "2025-11-20T03:37:59Z",
+      "closedAt": "2025-11-20T03:37:59Z",
       "comments": []
     }
   ],
@@ -118,26 +118,42 @@
       "id": "PR_kwDOOBnWLM60Z65w",
       "title": "Fix typo in Verification Algorithm section",
       "url": "https://github.com/sfluhrer/ssh-mldsa/pull/3",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "holger-dengler",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Fixes: #2",
       "createdAt": "2025-11-19T17:12:00Z",
-      "updatedAt": "2025-11-19T17:12:00Z",
+      "updatedAt": "2025-11-20T03:37:58Z",
       "baseRepository": "sfluhrer/ssh-mldsa",
       "baseRefName": "main",
       "baseRefOid": "54b5b7451aba3777f2e64c9f7d17265ee4625352",
       "headRepository": "holger-dengler/ssh-mldsa",
       "headRefName": "tip",
       "headRefOid": "0cb6955bf8386b119e23224bae86546d0a0b4995",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-11-20T03:37:58Z",
+      "mergedAt": "2025-11-20T03:37:58Z",
+      "mergedBy": "sfluhrer",
+      "mergeCommit": {
+        "oid": "ea3082df14ae44322ac04234317d1cd6400433b3"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOOBnWLM7PwQFn",
+          "commit": {
+            "abbreviatedOid": "0cb6955"
+          },
+          "author": "sfluhrer",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-11-20T03:37:36Z",
+          "updatedAt": "2025-11-20T03:37:36Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
