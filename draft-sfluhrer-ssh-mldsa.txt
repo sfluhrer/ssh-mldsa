@@ -4,8 +4,9 @@
 
 sshm                                                          S. Fluhrer
 Internet-Draft                                             Cisco Systems
-Intended status: Informational                            11 August 2025
-Expires: 12 February 2026
+Intended status: Informational                                  R. Appel
+Expires: 2 October 2026                                  Bank of America
+                                                           31 March 2026
 
 
                          SSH Support of ML-DSA
@@ -48,11 +49,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 February 2026.
+   This Internet-Draft will expire on 2 October 2026.
 
 Copyright Notice
 
-   Copyright (c) 2025 IETF Trust and the persons identified as the
+   Copyright (c) 2026 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -71,24 +72,27 @@ Table of Contents
    2.  Conventions and Definitions
    3.  Public Key Algorithms
    4.  Public Key Format
-   5.  Signature Format
-   6.  Verification Algorithm
-   7.  SSHFP DNS Resource Records
-   8.  IANA Considerations
-   9.  Security Considerations
-   10. References
-     10.1.  Normative References
-     10.2.  Informative References
+   5.  Signature Algorithm
+   6.  Signature Format
+   7.  Verification Algorithm
+   8.  SSHFP DNS Resource Records
+   9.  IANA Considerations
+   10. Security Considerations
+   11. References
+     11.1.  Normative References
+     11.2.  Informative References
    Acknowledgments
-   Author's Address
+   Authors' Addresses
 
 1.  Introduction
 
-   A Cryptographically Relevant Quantum Computer (CRQC) could break
-   traditional asymmetric cryptograph algorithms: e.g RSA, ECDSA; which
-   are widely deployed authentication options of SSH.  NIST has recently
-   published the postquantum digital signature algorithm ML-DSA
-   [FIPS204].
+   A Cryptographically Relevant Quantum Computer (CRQC) is a quantum
+   computer with sufficient compute capability and stability that it is
+   able to break traditional asymmetric cryptographic algorithms: e.g
+   RSA, ECDSA; which are currently the only authentication algorithms
+   available for SSH.  NIST has recently published the post-quantum
+   cryptography (PQC) algorithm known as ML-DSA [FIPS204] which is a
+   digital signature algorithm.
 
    This document describes how to use this algorithm for authentication
    within SSH [RFC4251], as a replacement for the traditional signature
@@ -97,14 +101,15 @@ Table of Contents
 1.1.  Background on ML-DSA
 
    ML-DSA (as specified in FIPS 204) is a signature algorithm that is
-   believed to be secure against attackers who have a Quantum Computer
-   available to them.  There are three strengths defined for it (with
-   the parameter sets being known as ML-DSA-44, ML-DSA-65 and ML-DSA-
-   87).  In addition, for each defined parameter set, there are two
-   versions, the 'pure' version (where ML-DSA directly signs the
-   message) and a 'prehashed' version (where ML-DSA signs a hash that
-   was computed outside of ML-DSA).  For this protocol, we will always
-   use the pure version.
+   believed to be secure against attackers who have a CRQC available to
+   them.  There are three parameter sets defined for it which belong to
+   a respective NIST Security Category of 2, 3, and 5 (ML-DSA-44, ML-
+   DSA-65, and ML-DSA-87).  In addition, for each defined parameter set,
+   there are two versions, the 'pure' version (where ML-DSA computes the
+   hash of the message internally and then signs that hash), and a
+   'prehashed' version (where ML-DSA signs a hash that was computed
+   outside of ML-DSA).  For this protocol, we will always use the pure
+   version.
 
    In addition, ML-DSA also has a 'context' input, which is a short
    string that is common to the sender and the recceiver.  It is
@@ -113,10 +118,11 @@ Table of Contents
    context.
 
    FIPS 204 also allows ML-DSA to be run in either determanistic or
-   'hedged' mode (where randomness is applied to the signature
-   operation).  We place no requirement on which is used; the
-   implementation should select based on the quality of their random
-   number source.
+   'hedged' mode (where randomness is applied during the signature
+   generation operation).  We recommend that implementations use hedged
+   mode, as it blocks certain side channel attacks.  However, as both
+   are interoperable, we do not place any requirement on which is used
+   within this protocol.
 
 2.  Conventions and Definitions
 
@@ -135,10 +141,10 @@ Table of Contents
 
    This document describes three public key algorithms for use with SSH,
    as per [RFC4253], Section 6.6, corresponding to the three parameter
-   sets of ML-DSA.  The names of the algorithm are "ssh-mldsa-44", "ssh-
-   mldsa-65" and "ssh-mldsa-87", to match the level 2, 3 and 5 parameter
-   sets [FIPS204].  These algorithm only support signing and not
-   encryption.
+   sets of ML-DSA.  The names of the algorithms are "ssh-mldsa-44",
+   "ssh-mldsa-65" and "ssh-mldsa-87", to match the level 2, 3 and 5
+   parameter sets [FIPS204].  These algorithm support only signing; it
+   does not support encryption.
 
    The below table lists the public key sizes and the signature size (in
    bytes) for the three parameter sets.
@@ -166,13 +172,13 @@ Table of Contents
 
    Here, 'key' is the public key described in [FIPS204].
 
-   # Signature Algorithm
+5.  Signature Algorithm
 
    Signatures are generated according to the procedure in Section 5.2
    [FIPS204], using the "pure" version of ML-DSA, with an empty context
    string.
 
-5.  Signature Format
+6.  Signature Format
 
    The "ssh-mldsa" key format has the following encoding:
 
@@ -183,13 +189,16 @@ Table of Contents
    Here, 'signature' is the signature produced in accordance with the
    previous section.
 
-6.  Verification Algorithm
+7.  Verification Algorithm
 
-   Signatures are verified according to the procedure in [FIPS204],
-   Section 5.3, using the "pure" version of ML-DSA, with an empty
-   context strong.
+   Signatures are verified in two steps.  For the first step, the length
+   of the signature must be checked against the parameter set, if the
+   signature length does not match the expected signature length for the
+   parameter set, it must be rejected.  Thenm the signature is verified
+   according to the procedure in [FIPS204], Section 5.3, using the
+   "pure" version of ML-DSA, with an empty context string.
 
-7.  SSHFP DNS Resource Records
+8.  SSHFP DNS Resource Records
 
    Usage and generation of the SSHFP DNS resource record is described in
    [RFC4255].  This section illustrates the generation of SSHFP resource
@@ -201,7 +210,8 @@ Table of Contents
    The generation of SSHFP resource records keys for ML-DSA is described
    as follows.
 
-   The encoding of ML-DSA public keys is described in [FIPS204].
+   The encoding of ML-DSA public keys is described as above in section
+   4.
 
    The SSHFP Resource Record for an ML-DSA key fingerprint (with a
    SHA-256 fingerprint) would, for example, be:
@@ -211,7 +221,7 @@ Table of Contents
 
    Replace TBD with the value eventually allocated by IANA.
 
-8.  IANA Considerations
+9.  IANA Considerations
 
    This document augments the Public Key Algorithm Names in [RFC4250],
    Section 4.11.3.
@@ -248,7 +258,7 @@ Table of Contents
 
                                   Table 3
 
-9.  Security Considerations
+10.  Security Considerations
 
    The security considerations in [RFC4251], Section 9 apply to all SSH
    implementations, including those using ML-DSA.
@@ -261,9 +271,9 @@ Table of Contents
    evaluate that cryptographic algorithms continue to provide the
    expected level of security.
 
-10.  References
+11.  References
 
-10.1.  Normative References
+11.1.  Normative References
 
    [FIPS204]  "Module-Lattice-Based Digital Signature Standard",
               NIST FIPS 204, August 2024,
@@ -278,7 +288,7 @@ Table of Contents
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
-10.2.  Informative References
+11.2.  Informative References
 
    [IANA-SSH] "Secure Shell (SSH) Protocol Parameters", n.d.,
               <https://www.iana.org/assignments/ssh-parameters>.
@@ -311,8 +321,13 @@ Acknowledgments
    The text of draft-josefsson-ssh-sphincs was used as a template for
    this document.
 
-Author's Address
+Authors' Addresses
 
    Scott Fluhrer
    Cisco Systems
    Email: sfluhrer@cisco.com
+
+
+   Ryan Appel
+   Bank of America
+   Email: ryan.appel@bofa.com
