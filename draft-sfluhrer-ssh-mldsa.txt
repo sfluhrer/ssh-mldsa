@@ -5,8 +5,8 @@
 sshm                                                          S. Fluhrer
 Internet-Draft                                             Cisco Systems
 Intended status: Informational                                  R. Appel
-Expires: 2 October 2026                                  Bank of America
-                                                           31 March 2026
+Expires: 4 October 2026                                  Bank of America
+                                                            2 April 2026
 
 
                          SSH Support of ML-DSA
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 October 2026.
+   This Internet-Draft will expire on 4 October 2026.
 
 Copyright Notice
 
@@ -194,7 +194,7 @@ Table of Contents
    Signatures are verified in two steps.  For the first step, the length
    of the signature must be checked against the parameter set, if the
    signature length does not match the expected signature length for the
-   parameter set, it must be rejected.  Thenm the signature is verified
+   parameter set, it must be rejected.  Then the signature is verified
    according to the procedure in [FIPS204], Section 5.3, using the
    "pure" version of ML-DSA, with an empty context string.
 
