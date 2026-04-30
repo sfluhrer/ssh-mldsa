@@ -212,7 +212,7 @@ informative:
    conversion of one format to another. As such, this document does not limit the mechanism in which an implementation
    chooses to represent the private key, but does make a suggestion for interoperability reasons.
 
-   As discussed in section 3.6.3 of [FIPS204], The ML-DSA seed value (denoted in the document as ξ) can be stored rather
+   As discussed in section 3.6.3 of [FIPS204], The ML-DSA seed value (denoted in the document as ξ (GREEK SMALL LETTER XI, U+03BE)) can be stored rather
    than the full expanded private/public key. This decision is one that offers a trade off of storage space vs
    computation. If one were to store the private key, the amount of storage space required ranges from 2560 bytes - 4896
    bytes (depending of course on the parameter set chosen). Although by today's general computation standards, these
@@ -226,7 +226,7 @@ informative:
    limited). This computation is not much of a slow down from loading in the private key from secondary storage, but it
    is still extra computation that has to be done, every time.
 
-   As such, an ML-DSA private key SHOULD be represented as the seed value (ξ) as denoted in [FIPS204] for the purposes of
+   As such, an ML-DSA private key SHOULD be represented as the seed value as denoted in [FIPS204] for the purposes of
    interoperability between all devices and implementations. An ML-DSA private key MAY be represented as the full key,
    and if desired MAY be represented by a concatenation between the seed value and the expanded private key so that
    implementations can take advantage of interoperability and conversion, but also take advantage of not re-expanding
