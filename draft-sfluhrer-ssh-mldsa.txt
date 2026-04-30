@@ -5,8 +5,8 @@
 sshm                                                          S. Fluhrer
 Internet-Draft                                             Cisco Systems
 Intended status: Informational                                  R. Appel
-Expires: 4 October 2026                                  Bank of America
-                                                            2 April 2026
+Expires: 1 November 2026                                 Bank of America
+                                                           30 April 2026
 
 
                          SSH Support of ML-DSA
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 October 2026.
+   This Internet-Draft will expire on 1 November 2026.
 
 Copyright Notice
 
@@ -81,6 +81,7 @@ Table of Contents
    11. References
      11.1.  Normative References
      11.2.  Informative References
+   Appendix A.  Storage of the ML-DSA Private Key
    Acknowledgments
    Authors' Addresses
 
@@ -96,25 +97,25 @@ Table of Contents
 
    This document describes how to use this algorithm for authentication
    within SSH [RFC4251], as a replacement for the traditional signature
-   algorithms (RSA, ECDSA).
+   algorithms (e.g. RSA, ECDSA).
 
 1.1.  Background on ML-DSA
 
    ML-DSA (as specified in FIPS 204) is a signature algorithm that is
    believed to be secure against attackers who have a CRQC available to
    them.  There are three parameter sets defined for it which belong to
-   a respective NIST Security Category of 2, 3, and 5 (ML-DSA-44, ML-
-   DSA-65, and ML-DSA-87).  In addition, for each defined parameter set,
-   there are two versions, the 'pure' version (where ML-DSA computes the
-   hash of the message internally and then signs that hash), and a
-   'prehashed' version (where ML-DSA signs a hash that was computed
-   outside of ML-DSA).  For this protocol, we will always use the pure
-   version.
+   a respective Security Category of 2, 3, and 5 (ML-DSA-44, ML-DSA-65,
+   and ML-DSA-87).  In addition, for each defined parameter set, there
+   are two versions, the 'pure' version (where ML-DSA computes the hash
+   internally of the message and then signs the internally computed
+   hash), and a 'prehashed' version (where ML-DSA signs a hash that was
+   computed outside of ML-DSA).  For this protocol, we will always use
+   the pure version.
 
    In addition, ML-DSA also has a 'context' input, which is a short
-   string that is common to the sender and the recceiver.  It is
-   intended to allow for domain separation between separate uses of the
-   same public key.  This protocol always uses an empty (zero length)
+   string that is common to the sender and the receiver.  It is intended
+   to allow for domain separation between separate uses of the same
+   public key.  This protocol always uses an empty (zero length)
    context.
 
    FIPS 204 also allows ML-DSA to be run in either determanistic or
@@ -141,10 +142,10 @@ Table of Contents
 
    This document describes three public key algorithms for use with SSH,
    as per [RFC4253], Section 6.6, corresponding to the three parameter
-   sets of ML-DSA.  The names of the algorithms are "ssh-mldsa-44",
-   "ssh-mldsa-65" and "ssh-mldsa-87", to match the level 2, 3 and 5
-   parameter sets [FIPS204].  These algorithm support only signing; it
-   does not support encryption.
+   sets of ML-DSA.  The names of the algorithm are "ssh-mldsa-44", "ssh-
+   mldsa-65" and "ssh-mldsa-87", to match the level 2, 3 and 5 parameter
+   sets [FIPS204].  These algorithm support only signing and not
+   encryption.
 
    The below table lists the public key sizes and the signature size (in
    bytes) for the three parameter sets.
@@ -180,7 +181,7 @@ Table of Contents
 
 6.  Signature Format
 
-   The "ssh-mldsa" key format has the following encoding:
+   The "ssh-mldsa" signature format has the following encoding:
 
    string "ssh-mldsa-44" (or "ssh-mldsa-65" or "ssh-mldsa-87")
 
@@ -191,12 +192,9 @@ Table of Contents
 
 7.  Verification Algorithm
 
-   Signatures are verified in two steps.  For the first step, the length
-   of the signature must be checked against the parameter set, if the
-   signature length does not match the expected signature length for the
-   parameter set, it must be rejected.  Then the signature is verified
-   according to the procedure in [FIPS204], Section 5.3, using the
-   "pure" version of ML-DSA, with an empty context string.
+   Signatures are verified according to the procedure in [FIPS204],
+   Section 5.3, using the "pure" version of ML-DSA, with an empty
+   context string.
 
 8.  SSHFP DNS Resource Records
 
@@ -210,8 +208,7 @@ Table of Contents
    The generation of SSHFP resource records keys for ML-DSA is described
    as follows.
 
-   The encoding of ML-DSA public keys is described as above in section
-   4.
+   The encoding of ML-DSA public keys is described in [FIPS204].
 
    The SSHFP Resource Record for an ML-DSA key fingerprint (with a
    SHA-256 fingerprint) would, for example, be:
@@ -267,7 +264,7 @@ Table of Contents
    ML-DSA, including those in SSH.
 
    Cryptographic algorithms and parameters are usually broken or
-   weakened over time.  Implementers and users need to continously re-
+   weakened over time.  Implementers and users need to continuously re-
    evaluate that cryptographic algorithms continue to provide the
    expected level of security.
 
@@ -289,6 +286,12 @@ Table of Contents
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
 11.2.  Informative References
+
+   [I-D.ietf-lamps-pq-composite-sigs]
+              "Composite Module-Lattice-Based Digital Signature
+              Algorithm (ML-DSA) for use in X.509 Public Key
+              Infrastructure", n.d., <https://datatracker.ietf.org/doc/
+              draft-ietf-lamps-pq-composite-sigs/19/>.
 
    [IANA-SSH] "Secure Shell (SSH) Protocol Parameters", n.d.,
               <https://www.iana.org/assignments/ssh-parameters>.
@@ -315,6 +318,77 @@ Table of Contents
               Publish Secure Shell (SSH) Key Fingerprints", RFC 4255,
               DOI 10.17487/RFC4255, January 2006,
               <https://www.rfc-editor.org/rfc/rfc4255>.
+
+   [RFC9881]  Massimo, J., Kampanakis, P., Turner, S., and B. E.
+              Westerbaan, "Internet X.509 Public Key Infrastructure --
+              Algorithm Identifiers for the Module-Lattice-Based Digital
+              Signature Algorithm (ML-DSA)", RFC 9881,
+              DOI 10.17487/RFC9881, October 2025,
+              <https://www.rfc-editor.org/rfc/rfc9881>.
+
+Appendix A.  Storage of the ML-DSA Private Key
+
+   In general, many protocols have defined exactly the way in which a
+   private key is to be represented when stored.  This has required all
+   parties involved to implement the same mechanism in which to
+   represent the private key if they desire to have a compliant
+   implementation.  This has almost never been the case for SSH, which
+   has allowed different implementations to represent the private key in
+   any way which made sense to the application.  This has also almost
+   never been a problem, as the chosen representation of the private key
+   was nearly always interoperable with different implementations
+   allowing users to "port" their implementation style 1 keys to
+   implementation style 2 or vice versa.
+
+   Depending on the way in which an ML-DSA key is represented between
+   implementations could possibly prevent the conversion of one format
+   to another.  As such, this document does not limit the mechanism in
+   which an implementation chooses to represent the private key, but
+   does make a suggestion for interoperability reasons.
+
+   As discussed in section 3.6.3 of [FIPS204], The ML-DSA seed value
+   (denoted in the document as ξ (GREEK SMALL LETTER XI, U+03BE)) can be
+   stored rather than the full expanded private/public key.  This
+   decision is one that offers a trade off of storage space vs
+   computation.  If one were to store the private key, the amount of
+   storage space required ranges from 2560 bytes - 4896 bytes (depending
+   of course on the parameter set chosen).  Although by today's general
+   computation standards, these storage requirements are very minimal
+   (an average picture for example is 10KB - 10MB), for space
+   constrained devices (i.e. smart cards), this can severely limit the
+   number of ML-DSA keys that can be stored on such a device.
+   Representing the private/public keypair with the seed however limits
+   the storage requirements to just 32 bytes -- around the size of an
+   ECDSA key on the P-256 curve.  The computational tradeoff here is of
+   course that if you want to produce a signature from an ML-DSA private
+   key, you first have to re-expand the private key from the seed value
+   to the full-expanded private key before producing the signature,
+   every time (or minimally cache the expanded private key in primary
+   memory for the length of time intended to produce signatures, which
+   again for constrained devices, is limited).  This computation is not
+   much of a slow down from loading in the private key from secondary
+   storage, but it is still extra computation that has to be done, every
+   time.
+
+   As such, an ML-DSA private key SHOULD be represented as the seed
+   value as denoted in [FIPS204] for the purposes of interoperability
+   between all devices and implementations.  An ML-DSA private key MAY
+   be represented as the full key, and if desired MAY be represented by
+   a concatenation between the seed value and the expanded private key
+   so that implementations can take advantage of interoperability and
+   conversion, but also take advantage of not re-expanding the key each
+   time, with the disadvantage being of course that the storage
+   requirements for the keys as listed in the last paragraph are
+   increased by 32 bytes.
+
+   Please note that PKCS#8 encoding of the ML-DSA private key is not
+   finalized (as of the writing of this document), but there is a
+   document currently in draft [I-D.ietf-lamps-pq-composite-sigs] as
+   well as [RFC9881], which have suggested and used the ML-DSA seed
+   value in the PKCS8 format.  If implementations wish to utilize PKCS8
+   for their implementation and serialization / deserialization of the
+   private key, it is likely that storage in seed format will be a
+   requirement.
 
 Acknowledgments
 

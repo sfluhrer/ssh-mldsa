@@ -2,7 +2,7 @@
 <html lang="en" class="Internet-Draft">
 <head>
 <meta charset="utf-8">
-<meta content="Common,Latin" name="scripts">
+<meta content="Common,Greek,Latin" name="scripts">
 <meta content="initial-scale=1.0" name="viewport">
 <title>SSH Support of ML-DSA</title>
 <meta content="Scott Fluhrer" name="author">
@@ -11,18 +11,18 @@
        This document describes the use of ML-DSA digital
    signatures in the Secure Shell (SSH) protocol. 
     " name="description">
-<meta content="xml2rfc 3.32.0" name="generator">
+<meta content="xml2rfc 3.33.0" name="generator">
 <meta content="ML-DSA" name="keyword">
 <meta content="draft-sfluhrer-ssh-mldsa-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.32.0
-    Python 3.12.12
+  xml2rfc 3.33.0
+    Python 3.12.13
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.2.1
     Jinja2 3.1.6
     lxml 6.0.2
-    platformdirs 4.9.4
+    platformdirs 4.9.6
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.32.5
@@ -1051,7 +1051,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Fluhrer &amp; Appel</td>
-<td class="center">Expires 4 October 2026</td>
+<td class="center">Expires 1 November 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1064,12 +1064,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-sfluhrer-ssh-mldsa-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-04-02" class="published">2 April 2026</time>
+<time datetime="2026-04-30" class="published">30 April 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-10-04">4 October 2026</time></dd>
+<dd class="expires"><time datetime="2026-11-01">1 November 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1124,7 +1124,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 4 October 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 1 November 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1200,10 +1200,13 @@ svg :is([fill="white"], [fill^="#fff"]) {
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.12.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-storage-of-the-ml-dsa-priva" class="internal xref">Storage of the ML-DSA Private Key</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
-            <p id="section-toc.1-1.13.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.13.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14">
+            <p id="section-toc.1-1.14.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1214,23 +1217,26 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">A Cryptographically Relevant Quantum Computer (CRQC) is a quantum computer with sufficient compute capability and stability that it is able to break traditional asymmetric cryptographic algorithms:
-   e.g RSA, ECDSA; which are currently the only authentication algorithms available for SSH.
-   NIST has recently published the post-quantum cryptography (PQC) algorithm known as ML-DSA <span>[<a href="#FIPS204" class="cite xref">FIPS204</a>]</span> which is a digital signature algorithm.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">This document describes how to use this algorithm for authentication within SSH <span>[<a href="#RFC4251" class="cite xref">RFC4251</a>]</span>, as a replacement for the traditional signature algorithms (RSA, ECDSA).<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-1">A Cryptographically Relevant Quantum Computer (CRQC) is a quantum computer with sufficient compute capability and
+   stability that it is able to break traditional asymmetric cryptographic algorithms: e.g RSA, ECDSA; which are
+   currently the only authentication algorithms available for SSH. NIST has recently published the post-quantum
+   cryptography (PQC) algorithm known as ML-DSA <span>[<a href="#FIPS204" class="cite xref">FIPS204</a>]</span> which is a digital signature algorithm.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">This document describes how to use this algorithm for authentication within SSH <span>[<a href="#RFC4251" class="cite xref">RFC4251</a>]</span>, as a replacement for the
+   traditional signature algorithms (e.g. RSA, ECDSA).<a href="#section-1-2" class="pilcrow">¶</a></p>
 <div id="background-on-ml-dsa">
 <section id="section-1.1">
         <h3 id="name-background-on-ml-dsa">
 <a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-background-on-ml-dsa" class="section-name selfRef">Background on ML-DSA</a>
         </h3>
-<p id="section-1.1-1">ML-DSA (as specified in FIPS 204) is a signature algorithm that is believed to be secure against attackers who have a CRQC available to them.
-   There are three parameter sets defined for it which belong to a respective NIST Security Category of 2, 3, and 5 (ML-DSA-44, ML-DSA-65, and ML-DSA-87).
-   In addition, for each defined parameter set, there are two versions, the 'pure' version (where ML-DSA computes the hash of the message internally and then signs that hash),
-   and a 'prehashed' version (where ML-DSA signs a hash that was computed outside of ML-DSA).
-   For this protocol, we will always use the pure version.<a href="#section-1.1-1" class="pilcrow">¶</a></p>
-<p id="section-1.1-2">In addition, ML-DSA also has a 'context' input, which is a short string that is common to the sender and the recceiver.
-   It is intended to allow for domain separation between separate uses of the same public key.
-   This protocol always uses an empty (zero length) context.<a href="#section-1.1-2" class="pilcrow">¶</a></p>
+<p id="section-1.1-1">ML-DSA (as specified in FIPS 204) is a signature algorithm that is believed to be secure against attackers who have a
+   CRQC available to them. There are three parameter sets defined for it which belong to a respective Security Category
+   of 2, 3, and 5 (ML-DSA-44, ML-DSA-65, and ML-DSA-87). In addition, for each defined parameter set, there are two
+   versions, the 'pure' version (where ML-DSA computes the hash internally of the message and then signs the internally
+   computed hash), and a 'prehashed' version (where ML-DSA signs a hash that was computed outside of ML-DSA). For this
+   protocol, we will always use the pure version.<a href="#section-1.1-1" class="pilcrow">¶</a></p>
+<p id="section-1.1-2">In addition, ML-DSA also has a 'context' input, which is a short string that is common to the sender and the
+   receiver. It is intended to allow for domain separation between separate uses of the same public key. This protocol
+   always uses an empty (zero length) context.<a href="#section-1.1-2" class="pilcrow">¶</a></p>
 <p id="section-1.1-3">FIPS 204 also allows ML-DSA to be run in either determanistic or 'hedged' mode (where randomness is applied during the signature generation operation).
    We recommend that implementations use hedged mode, as it blocks certain side channel attacks.
    However, as both are interoperable, we do not place any requirement on which is used within this protocol.<a href="#section-1.1-3" class="pilcrow">¶</a></p>
@@ -1260,8 +1266,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       </h2>
 <p id="section-3-1">This document describes three public key algorithms for use with SSH, as
    per <span>[<a href="#RFC4253" class="cite xref">RFC4253</a>]</span>, Section 6.6, corresponding to the three parameter sets of ML-DSA.
-   The names of the algorithms are "ssh-mldsa-44", "ssh-mldsa-65" and "ssh-mldsa-87", to match the level 2, 3 and 5 parameter sets <span>[<a href="#FIPS204" class="cite xref">FIPS204</a>]</span>.
-   These algorithm support only signing; it does not support encryption.<a href="#section-3-1" class="pilcrow">¶</a></p>
+   The names of the algorithm are "ssh-mldsa-44", "ssh-mldsa-65" and "ssh-mldsa-87", to match the level 2, 3 and 5 parameter sets <span>[<a href="#FIPS204" class="cite xref">FIPS204</a>]</span>.
+   These algorithm support only signing and not encryption.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <p id="section-3-2">The below table lists the public key sizes and the signature size (in bytes) for the three parameter sets.<a href="#section-3-2" class="pilcrow">¶</a></p>
 <table class="center" id="table-1">
         <caption><a href="#table-1" class="selfRef">Table 1</a></caption>
@@ -1308,8 +1314,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       <h2 id="name-signature-algorithm">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-signature-algorithm" class="section-name selfRef">Signature Algorithm</a>
       </h2>
-<p id="section-5-1">Signatures are generated according to the procedure in Section 5.2
-   <span>[<a href="#FIPS204" class="cite xref">FIPS204</a>]</span>, using the "pure" version of ML-DSA, with an empty context string.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-1">Signatures are generated according to the procedure in Section 5.2 <span>[<a href="#FIPS204" class="cite xref">FIPS204</a>]</span>, using the "pure" version of ML-DSA,
+   with an empty context string.<a href="#section-5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="signature-format">
@@ -1317,11 +1323,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       <h2 id="name-signature-format">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-signature-format" class="section-name selfRef">Signature Format</a>
       </h2>
-<p id="section-6-1">The "ssh-mldsa" key format has the following encoding:<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-1">The "ssh-mldsa" signature format has the following encoding:<a href="#section-6-1" class="pilcrow">¶</a></p>
 <p id="section-6-2">string "ssh-mldsa-44" (or "ssh-mldsa-65" or "ssh-mldsa-87")<a href="#section-6-2" class="pilcrow">¶</a></p>
 <p id="section-6-3">string signature<a href="#section-6-3" class="pilcrow">¶</a></p>
-<p id="section-6-4">Here, 'signature' is the signature produced in accordance with the
-   previous section.<a href="#section-6-4" class="pilcrow">¶</a></p>
+<p id="section-6-4">Here, 'signature' is the signature produced in accordance with the previous section.<a href="#section-6-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="verification-algorithm">
@@ -1329,10 +1334,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       <h2 id="name-verification-algorithm">
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-verification-algorithm" class="section-name selfRef">Verification Algorithm</a>
       </h2>
-<p id="section-7-1">Signatures are verified in two steps.
-   For the first step, the length of the signature must be checked against the parameter set,
-   if the signature length does not match the expected signature length for the parameter set, it must be rejected.
-   Then the signature is verified according to the procedure in
+<p id="section-7-1">Signatures are verified according to the procedure in
    <span>[<a href="#FIPS204" class="cite xref">FIPS204</a>]</span>, Section 5.3, using the "pure" version of ML-DSA, with an empty context string.<a href="#section-7-1" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1341,17 +1343,13 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       <h2 id="name-sshfp-dns-resource-records">
 <a href="#section-8" class="section-number selfRef">8. </a><a href="#name-sshfp-dns-resource-records" class="section-name selfRef">SSHFP DNS Resource Records</a>
       </h2>
-<p id="section-8-1">Usage and generation of the SSHFP DNS resource record is described in
-   <span>[<a href="#RFC4255" class="cite xref">RFC4255</a>]</span>.  This section illustrates the generation of SSHFP resource
-   records for ML-DSA keys, and this document also specifies
-   the corresponding code point to "SSHFP RR Types for public key
-   algorithms" in the "DNS SSHFP Resource Record Parameters" IANA
-   registry <span>[<a href="#IANA-SSHFP" class="cite xref">IANA-SSHFP</a>]</span>.<a href="#section-8-1" class="pilcrow">¶</a></p>
-<p id="section-8-2">The generation of SSHFP resource records keys for ML-DSA is
-   described as follows.<a href="#section-8-2" class="pilcrow">¶</a></p>
-<p id="section-8-3">The encoding of ML-DSA public keys is described as above in section 4.<a href="#section-8-3" class="pilcrow">¶</a></p>
-<p id="section-8-4">The SSHFP Resource Record for an ML-DSA key fingerprint
-   (with a SHA-256 fingerprint) would, for example, be:<a href="#section-8-4" class="pilcrow">¶</a></p>
+<p id="section-8-1">Usage and generation of the SSHFP DNS resource record is described in <span>[<a href="#RFC4255" class="cite xref">RFC4255</a>]</span>.  This section illustrates the
+   generation of SSHFP resource records for ML-DSA keys, and this document also specifies the corresponding code point
+   to "SSHFP RR Types for public key algorithms" in the "DNS SSHFP Resource Record Parameters" IANA registry
+   <span>[<a href="#IANA-SSHFP" class="cite xref">IANA-SSHFP</a>]</span>.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-8-2">The generation of SSHFP resource records keys for ML-DSA is described as follows.<a href="#section-8-2" class="pilcrow">¶</a></p>
+<p id="section-8-3">The encoding of ML-DSA public keys is described in <span>[<a href="#FIPS204" class="cite xref">FIPS204</a>]</span>.<a href="#section-8-3" class="pilcrow">¶</a></p>
+<p id="section-8-4">The SSHFP Resource Record for an ML-DSA key fingerprint (with a SHA-256 fingerprint) would, for example, be:<a href="#section-8-4" class="pilcrow">¶</a></p>
 <p id="section-8-5">pqserver.example.com. IN SSHFP TBD 2 (
                     a87f1b687ac0e57d2a081a2f28267237
                     34d90ed316d2b818ca9580ea384d9240 )<a href="#section-8-5" class="pilcrow">¶</a></p>
@@ -1364,9 +1362,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <a href="#section-9" class="section-number selfRef">9. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
 <p id="section-9-1">This document augments the Public Key Algorithm Names in <span>[<a href="#RFC4250" class="cite xref">RFC4250</a>]</span>, Section 4.11.3.<a href="#section-9-1" class="pilcrow">¶</a></p>
-<p id="section-9-2">IANA is requested to add the following entries to "Public Key Algorithm
-   Names" in the "Secure Shell (SSH) Protocol Parameters" registry
-   <span>[<a href="#IANA-SSH" class="cite xref">IANA-SSH</a>]</span>:<a href="#section-9-2" class="pilcrow">¶</a></p>
+<p id="section-9-2">IANA is requested to add the following entries to "Public Key Algorithm Names" in the "Secure Shell (SSH) Protocol
+   Parameters" registry <span>[<a href="#IANA-SSH" class="cite xref">IANA-SSH</a>]</span>:<a href="#section-9-2" class="pilcrow">¶</a></p>
 <table class="center" id="table-2">
         <caption><a href="#table-2" class="selfRef">Table 2</a></caption>
 <thead>
@@ -1390,9 +1387,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           </tr>
         </tbody>
       </table>
-<p id="section-9-4">IANA is requested to add the following entries to "SSHFP RR Types for
-   public key algorithms" in the "DNS SSHFP Resource Record Parameters"
-   registry <span>[<a href="#IANA-SSHFP" class="cite xref">IANA-SSHFP</a>]</span>:<a href="#section-9-4" class="pilcrow">¶</a></p>
+<p id="section-9-4">IANA is requested to add the following entries to "SSHFP RR Types for public key algorithms" in the "DNS SSHFP
+   Resource Record Parameters" registry <span>[<a href="#IANA-SSHFP" class="cite xref">IANA-SSHFP</a>]</span>:<a href="#section-9-4" class="pilcrow">¶</a></p>
 <table class="center" id="table-3">
         <caption><a href="#table-3" class="selfRef">Table 3</a></caption>
 <thead>
@@ -1427,13 +1423,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       <h2 id="name-security-considerations">
 <a href="#section-10" class="section-number selfRef">10. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-10-1">The security considerations in <span>[<a href="#RFC4251" class="cite xref">RFC4251</a>]</span>, Section 9 apply to all SSH
-   implementations, including those using ML-DSA.<a href="#section-10-1" class="pilcrow">¶</a></p>
-<p id="section-10-2">The security considerations in ML-DSA <span>[<a href="#FIPS204" class="cite xref">FIPS204</a>]</span> apply to all
-   uses of ML-DSA, including those in SSH.<a href="#section-10-2" class="pilcrow">¶</a></p>
-<p id="section-10-3">Cryptographic algorithms and parameters are usually broken or
-   weakened over time.  Implementers and users need to continously re-evaluate that cryptographic algorithms continue to provide the
-   expected level of security.<a href="#section-10-3" class="pilcrow">¶</a></p>
+<p id="section-10-1">The security considerations in <span>[<a href="#RFC4251" class="cite xref">RFC4251</a>]</span>, Section 9 apply to all SSH implementations, including those using ML-DSA.<a href="#section-10-1" class="pilcrow">¶</a></p>
+<p id="section-10-2">The security considerations in ML-DSA <span>[<a href="#FIPS204" class="cite xref">FIPS204</a>]</span> apply to all uses of ML-DSA, including those in SSH.<a href="#section-10-2" class="pilcrow">¶</a></p>
+<p id="section-10-3">Cryptographic algorithms and parameters are usually broken or weakened over time.  Implementers and users need to
+   continuously re-evaluate that cryptographic algorithms continue to provide the expected level of security.<a href="#section-10-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-combined-references">
@@ -1468,6 +1461,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <a href="#section-11.2" class="section-number selfRef">11.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
+<dt id="I-D.ietf-lamps-pq-composite-sigs">[I-D.ietf-lamps-pq-composite-sigs]</dt>
+        <dd>
+<span class="refTitle">"Composite Module-Lattice-Based Digital Signature Algorithm (ML-DSA) for use in X.509 Public Key Infrastructure"</span>, <span>n.d.</span>, <span>&lt;<a href="https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/19/">https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/19/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="IANA-SSH">[IANA-SSH]</dt>
         <dd>
 <span class="refTitle">"Secure Shell (SSH) Protocol Parameters"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.iana.org/assignments/ssh-parameters">https://www.iana.org/assignments/ssh-parameters</a>&gt;</span>. </dd>
@@ -1489,24 +1486,69 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <span class="refAuthor">Ylonen, T.</span> and <span class="refAuthor">C. Lonvick, Ed.</span>, <span class="refTitle">"The Secure Shell (SSH) Transport Layer Protocol"</span>, <span class="seriesInfo">RFC 4253</span>, <span class="seriesInfo">DOI 10.17487/RFC4253</span>, <time datetime="2006-01" class="refDate">January 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4253">https://www.rfc-editor.org/rfc/rfc4253</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC4255">[RFC4255]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Schlyter, J.</span> and <span class="refAuthor">W. Griffin</span>, <span class="refTitle">"Using DNS to Securely Publish Secure Shell (SSH) Key Fingerprints"</span>, <span class="seriesInfo">RFC 4255</span>, <span class="seriesInfo">DOI 10.17487/RFC4255</span>, <time datetime="2006-01" class="refDate">January 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4255">https://www.rfc-editor.org/rfc/rfc4255</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9881">[RFC9881]</dt>
+      <dd>
+<span class="refAuthor">Massimo, J.</span>, <span class="refAuthor">Kampanakis, P.</span>, <span class="refAuthor">Turner, S.</span>, and <span class="refAuthor">B. E. Westerbaan</span>, <span class="refTitle">"Internet X.509 Public Key Infrastructure -- Algorithm Identifiers for the Module-Lattice-Based Digital Signature Algorithm (ML-DSA)"</span>, <span class="seriesInfo">RFC 9881</span>, <span class="seriesInfo">DOI 10.17487/RFC9881</span>, <time datetime="2025-10" class="refDate">October 2025</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9881">https://www.rfc-editor.org/rfc/rfc9881</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
 </div>
 </section>
 </div>
-<div id="acknowledgments">
+<div id="storage-of-the-ml-dsa-private-key">
 <section id="appendix-A">
+      <h2 id="name-storage-of-the-ml-dsa-priva">
+<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-storage-of-the-ml-dsa-priva" class="section-name selfRef">Storage of the ML-DSA Private Key</a>
+      </h2>
+<p id="appendix-A-1">In general, many protocols have defined exactly the way in which a private key is to be represented when stored. This
+   has required all parties involved to implement the same mechanism in which to represent the private key if they
+   desire to have a compliant implementation. This has almost never been the case for SSH, which has allowed different
+   implementations to represent the private key in any way which made sense to the application. This has also almost
+   never been a problem, as the chosen representation of the private key was nearly always interoperable with different
+   implementations allowing users to "port" their <code>implementation style 1</code> keys to <code>implementation style 2</code> or vice
+   versa.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-2">Depending on the way in which an ML-DSA key is represented between implementations could possibly prevent the
+   conversion of one format to another. As such, this document does not limit the mechanism in which an implementation
+   chooses to represent the private key, but does make a suggestion for interoperability reasons.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
+<p id="appendix-A-3">As discussed in section 3.6.3 of <span>[<a href="#FIPS204" class="cite xref">FIPS204</a>]</span>, The ML-DSA seed value (denoted in the document as ξ (GREEK SMALL LETTER XI, U+03BE)) can be stored rather
+   than the full expanded private/public key. This decision is one that offers a trade off of storage space vs
+   computation. If one were to store the private key, the amount of storage space required ranges from 2560 bytes - 4896
+   bytes (depending of course on the parameter set chosen). Although by today's general computation standards, these
+   storage requirements are very minimal (an average picture for example is 10KB - 10MB), for space constrained devices
+   (i.e. smart cards), this can severely limit the number of ML-DSA keys that can be stored on such a device.
+   Representing the private/public keypair with the seed however limits the storage requirements to just 32 bytes --
+   around the size of an ECDSA key on the P-256 curve. The computational tradeoff here is of course that if you want to
+   produce a signature from an ML-DSA private key, you first have to re-expand the private key from the seed value to
+   the full-expanded private key before producing the signature, every time (or minimally cache the expanded private key
+   in primary memory for the length of time intended to produce signatures, which again for constrained devices, is
+   limited). This computation is not much of a slow down from loading in the private key from secondary storage, but it
+   is still extra computation that has to be done, every time.<a href="#appendix-A-3" class="pilcrow">¶</a></p>
+<p id="appendix-A-4">As such, an ML-DSA private key <span class="bcp14">SHOULD</span> be represented as the seed value as denoted in <span>[<a href="#FIPS204" class="cite xref">FIPS204</a>]</span> for the purposes of
+   interoperability between all devices and implementations. An ML-DSA private key <span class="bcp14">MAY</span> be represented as the full key,
+   and if desired <span class="bcp14">MAY</span> be represented by a concatenation between the seed value and the expanded private key so that
+   implementations can take advantage of interoperability and conversion, but also take advantage of not re-expanding
+   the key each time, with the disadvantage being of course that the storage requirements for the keys as listed in the
+   last paragraph are increased by 32 bytes.<a href="#appendix-A-4" class="pilcrow">¶</a></p>
+<p id="appendix-A-5">Please note that PKCS#8 encoding of the ML-DSA private key is not finalized (as of the writing of this document), but
+   there is a document currently in draft <span>[<a href="#I-D.ietf-lamps-pq-composite-sigs" class="cite xref">I-D.ietf-lamps-pq-composite-sigs</a>]</span> as well as <span>[<a href="#RFC9881" class="cite xref">RFC9881</a>]</span>, which have suggested
+   and used the ML-DSA seed value in the PKCS8 format. If implementations wish to utilize PKCS8 for their implementation
+   and serialization / deserialization of the private key, it is likely that storage in seed format will be a
+   requirement.<a href="#appendix-A-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="acknowledgments">
+<section id="appendix-B">
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-A-1">The text of draft-josefsson-ssh-sphincs was used as a template for this document.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-B-1">The text of draft-josefsson-ssh-sphincs was used as a template for this document.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
-<section id="appendix-B">
+<section id="appendix-C">
       <h2 id="name-authors-addresses">
 <a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
       </h2>
