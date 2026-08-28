@@ -5,8 +5,8 @@
 sshm                                                          S. Fluhrer
 Internet-Draft                                             Cisco Systems
 Intended status: Informational                                  R. Appel
-Expires: 15 February 2027                                Bank of America
-                                                          14 August 2026
+Expires: 1 March 2027                                    Bank of America
+                                                          28 August 2026
 
 
                          SSH Support of ML-DSA
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 February 2027.
+   This Internet-Draft will expire on 1 March 2027.
 
 Copyright Notice
 
